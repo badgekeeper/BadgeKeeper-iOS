@@ -14,31 +14,45 @@ BadgeKeeper service lightweight client library.
 ### How to use
 
 1. Setup project
+```
 [BadgeKeeper instance].projectId = "ProjectId from admin panel";
+```
 2. Setup user
+```
 [BadgeKeeper instance].userId = "Your client id";
+```
 3. Subscribe to completed achievements
-    [[NSNotificationCenter defaultCenter]
-                                addObserver:self
-                                selector:@selector(clientDidSendValues:)
-                                name:kBKNotificationDidPostPreparedValues
-                                object:nil];
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidSendValues:)
+                            name:kBKNotificationDidPostPreparedValues
+                            object:nil];
+```
 or
-    [[NSNotificationCenter defaultCenter]
-                                addObserver:self
-                                selector:@selector(clientDidSendValues:)
-                                name:kBKNotificationDidIncrementPreparedValues
-                                object:nil];
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidSendValues:)
+                            name:kBKNotificationDidIncrementPreparedValues
+                            object:nil];
+```
 4. Catch notification
+```
 - (void)clientDidSendValues:(NSNotification *)notification {
     NSArray *value = notification.userInfo[kBKNotificationKeyResponseObject];
 }
+```
 5. Post variable
+```
 [[BadgeKeeper instance] prepareValue:100 forKey:@"Variable"];
 [[BadgeKeeper instance] postPreparedValues];
+```
 6. Increment variable
+```
 [[BadgeKeeper instance] prepareValue:20 forKey:@"Variable"];
 [[BadgeKeeper instance] incrementPreparedValues];
+```
 
 ## License
 

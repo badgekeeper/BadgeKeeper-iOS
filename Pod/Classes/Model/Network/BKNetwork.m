@@ -43,7 +43,7 @@ NSString *const baseURL = @"https://api.badgekeeper.net/";
         NSData *bodyData = [packet.body dataUsingEncoding:NSUTF8StringEncoding];
         
         [r setValue:[NSString stringWithFormat:@"%ld",
-                     bodyData.length] forHTTPHeaderField:@"Content-Length"];
+                     (unsigned long)bodyData.length] forHTTPHeaderField:@"Content-Length"];
         [r setHTTPBody:bodyData];
     }
     // launch data task

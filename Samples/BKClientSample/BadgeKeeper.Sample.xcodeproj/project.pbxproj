@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF33378C1B5ABC1800C637DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33378B1B5ABC1800C637DE /* main.m */; };
+		CF33378F1B5ABC1800C637DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33378E1B5ABC1800C637DE /* AppDelegate.m */; };
+		CF3337971B5ABC1800C637DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3337961B5ABC1800C637DE /* Images.xcassets */; };
+		CF3337E21B5AFB3800C637DE /* BadgeKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3337E11B5AFB3800C637DE /* BadgeKeeper.m */; };
+		CF33383B1B5B03E600C637DE /* BKKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33383A1B5B03E600C637DE /* BKKeyValuePair.m */; };
+		CF33383F1B5B069300C637DE /* BKNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33383E1B5B069300C637DE /* BKNetwork.m */; };
+		CF3338511B5B20CC00C637DE /* BKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338501B5B20CC00C637DE /* BKObject.m */; };
+		CF33385F1B5B25D200C637DE /* BKProjectAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338571B5B25D200C637DE /* BKProjectAchievement.m */; };
+		CF3338601B5B25D200C637DE /* BKUserAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338591B5B25D200C637DE /* BKUserAchievement.m */; };
+		CF3338611B5B25D200C637DE /* BKUnlockedUserAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33385C1B5B25D200C637DE /* BKUnlockedUserAchievement.m */; };
+		CF3338621B5B25D200C637DE /* BKUnlockedUserAchievementList.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33385E1B5B25D200C637DE /* BKUnlockedUserAchievementList.m */; };
+		CF3338661B5B2D3100C637DE /* BKNetPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338651B5B2D3000C637DE /* BKNetPacket.m */; };
+		CF3338691B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338681B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m */; };
+		CF33386C1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33386B1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m */; };
+		CFAFC0CF1B6FE26D00FA174B /* BKAchievementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC0CD1B6FE26D00FA174B /* BKAchievementViewController.m */; };
+		CFAFC0D01B6FE26D00FA174B /* BKAchievementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAFC0CE1B6FE26D00FA174B /* BKAchievementViewController.xib */; };
+		CFCE2FCE1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CF3337861B5ABC1800C637DE /* BadgeKeeper.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadgeKeeper.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF33378A1B5ABC1800C637DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF33378B1B5ABC1800C637DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF33378D1B5ABC1800C637DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CF33378E1B5ABC1800C637DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CF3337961B5ABC1800C637DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CF3337E01B5AFB3800C637DE /* BadgeKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeKeeper.h; sourceTree = "<group>"; };
+		CF3337E11B5AFB3800C637DE /* BadgeKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeKeeper.m; sourceTree = "<group>"; };
+		CF3338391B5B03E600C637DE /* BKKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKKeyValuePair.h; sourceTree = "<group>"; };
+		CF33383A1B5B03E600C637DE /* BKKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKKeyValuePair.m; sourceTree = "<group>"; };
+		CF33383D1B5B069300C637DE /* BKNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetwork.h; sourceTree = "<group>"; };
+		CF33383E1B5B069300C637DE /* BKNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetwork.m; sourceTree = "<group>"; };
+		CF33384F1B5B20CC00C637DE /* BKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKObject.h; sourceTree = "<group>"; };
+		CF3338501B5B20CC00C637DE /* BKObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKObject.m; sourceTree = "<group>"; };
+		CF3338561B5B25D200C637DE /* BKProjectAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKProjectAchievement.h; sourceTree = "<group>"; };
+		CF3338571B5B25D200C637DE /* BKProjectAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKProjectAchievement.m; sourceTree = "<group>"; };
+		CF3338581B5B25D200C637DE /* BKUserAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKUserAchievement.h; sourceTree = "<group>"; };
+		CF3338591B5B25D200C637DE /* BKUserAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKUserAchievement.m; sourceTree = "<group>"; };
+		CF33385B1B5B25D200C637DE /* BKUnlockedUserAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKUnlockedUserAchievement.h; sourceTree = "<group>"; };
+		CF33385C1B5B25D200C637DE /* BKUnlockedUserAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKUnlockedUserAchievement.m; sourceTree = "<group>"; };
+		CF33385D1B5B25D200C637DE /* BKUnlockedUserAchievementList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKUnlockedUserAchievementList.h; sourceTree = "<group>"; };
+		CF33385E1B5B25D200C637DE /* BKUnlockedUserAchievementList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKUnlockedUserAchievementList.m; sourceTree = "<group>"; };
+		CF3338641B5B2D3000C637DE /* BKNetPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacket.h; sourceTree = "<group>"; };
+		CF3338651B5B2D3000C637DE /* BKNetPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacket.m; sourceTree = "<group>"; };
+		CF3338671B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketGetProjectAchievements.h; sourceTree = "<group>"; };
+		CF3338681B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketGetProjectAchievements.m; sourceTree = "<group>"; };
+		CF33386A1B5B356C00C637DE /* BKNetPacketGetUserAchievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketGetUserAchievements.h; sourceTree = "<group>"; };
+		CF33386B1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketGetUserAchievements.m; sourceTree = "<group>"; };
+		CFAFC0CC1B6FE26D00FA174B /* BKAchievementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKAchievementViewController.h; sourceTree = "<group>"; };
+		CFAFC0CD1B6FE26D00FA174B /* BKAchievementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKAchievementViewController.m; sourceTree = "<group>"; };
+		CFAFC0CE1B6FE26D00FA174B /* BKAchievementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKAchievementViewController.xib; sourceTree = "<group>"; };
+		CFCE2FCC1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketSetUserChanges.h; sourceTree = "<group>"; };
+		CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketSetUserChanges.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF3337831B5ABC1800C637DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF33377D1B5ABC1800C637DE = {
+			isa = PBXGroup;
+			children = (
+				CF3337881B5ABC1800C637DE /* BadgeKeeper.Sample */,
+				CF3337871B5ABC1800C637DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF3337871B5ABC1800C637DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF3337861B5ABC1800C637DE /* BadgeKeeper.Sample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF3337881B5ABC1800C637DE /* BadgeKeeper.Sample */ = {
+			isa = PBXGroup;
+			children = (
+				CFAFC0CB1B6FE26D00FA174B /* Presenter */,
+				CF3337DF1B5AFB2D00C637DE /* Vendor */,
+				CF33378D1B5ABC1800C637DE /* AppDelegate.h */,
+				CF33378E1B5ABC1800C637DE /* AppDelegate.m */,
+				CF3337961B5ABC1800C637DE /* Images.xcassets */,
+				CF33378A1B5ABC1800C637DE /* Info.plist */,
+				CF33378B1B5ABC1800C637DE /* main.m */,
+			);
+			name = BadgeKeeper.Sample;
+			path = BadgeKeeper.Sample;
+			sourceTree = "<group>";
+		};
+		CF3337DF1B5AFB2D00C637DE /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				CF3338301B5B03B700C637DE /* Model */,
+				CF3337E01B5AFB3800C637DE /* BadgeKeeper.h */,
+				CF3337E11B5AFB3800C637DE /* BadgeKeeper.m */,
+			);
+			name = Vendor;
+			path = Classes/Vendor;
+			sourceTree = "<group>";
+		};
+		CF3338301B5B03B700C637DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF33383C1B5B068400C637DE /* Network */,
+				CF3338381B5B03DD00C637DE /* Objects */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF3338381B5B03DD00C637DE /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				CF3338551B5B25D200C637DE /* ProjectAchievement */,
+				CF33385A1B5B25D200C637DE /* UnlockedUserAchievement */,
+				CF33384F1B5B20CC00C637DE /* BKObject.h */,
+				CF3338501B5B20CC00C637DE /* BKObject.m */,
+				CF3338391B5B03E600C637DE /* BKKeyValuePair.h */,
+				CF33383A1B5B03E600C637DE /* BKKeyValuePair.m */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		CF33383C1B5B068400C637DE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CF3338631B5B2D2600C637DE /* Packets */,
+				CF33383D1B5B069300C637DE /* BKNetwork.h */,
+				CF33383E1B5B069300C637DE /* BKNetwork.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CF3338551B5B25D200C637DE /* ProjectAchievement */ = {
+			isa = PBXGroup;
+			children = (
+				CF3338561B5B25D200C637DE /* BKProjectAchievement.h */,
+				CF3338571B5B25D200C637DE /* BKProjectAchievement.m */,
+				CF3338581B5B25D200C637DE /* BKUserAchievement.h */,
+				CF3338591B5B25D200C637DE /* BKUserAchievement.m */,
+			);
+			path = ProjectAchievement;
+			sourceTree = "<group>";
+		};
+		CF33385A1B5B25D200C637DE /* UnlockedUserAchievement */ = {
+			isa = PBXGroup;
+			children = (
+				CF33385B1B5B25D200C637DE /* BKUnlockedUserAchievement.h */,
+				CF33385C1B5B25D200C637DE /* BKUnlockedUserAchievement.m */,
+				CF33385D1B5B25D200C637DE /* BKUnlockedUserAchievementList.h */,
+				CF33385E1B5B25D200C637DE /* BKUnlockedUserAchievementList.m */,
+			);
+			path = UnlockedUserAchievement;
+			sourceTree = "<group>";
+		};
+		CF3338631B5B2D2600C637DE /* Packets */ = {
+			isa = PBXGroup;
+			children = (
+				CF3338641B5B2D3000C637DE /* BKNetPacket.h */,
+				CF3338651B5B2D3000C637DE /* BKNetPacket.m */,
+				CF3338671B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.h */,
+				CF3338681B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m */,
+				CF33386A1B5B356C00C637DE /* BKNetPacketGetUserAchievements.h */,
+				CF33386B1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m */,
+				CFCE2FCC1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.h */,
+				CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */,
+			);
+			path = Packets;
+			sourceTree = "<group>";
+		};
+		CFAFC0CB1B6FE26D00FA174B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CFAFC0CC1B6FE26D00FA174B /* BKAchievementViewController.h */,
+				CFAFC0CD1B6FE26D00FA174B /* BKAchievementViewController.m */,
+				CFAFC0CE1B6FE26D00FA174B /* BKAchievementViewController.xib */,
+			);
+			name = Presenter;
+			path = Classes/Presenter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF3337851B5ABC1800C637DE /* BadgeKeeper.Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF3337A91B5ABC1800C637DE /* Build configuration list for PBXNativeTarget "BadgeKeeper.Sample" */;
+			buildPhases = (
+				CF3337821B5ABC1800C637DE /* Sources */,
+				CF3337831B5ABC1800C637DE /* Frameworks */,
+				CF3337841B5ABC1800C637DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BadgeKeeper.Sample;
+			productName = BadgeKeeper.Sample;
+			productReference = CF3337861B5ABC1800C637DE /* BadgeKeeper.Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF33377E1B5ABC1800C637DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = BadgeKeeper;
+				TargetAttributes = {
+					CF3337851B5ABC1800C637DE = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = CF3337811B5ABC1800C637DE /* Build configuration list for PBXProject "BadgeKeeper.Sample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF33377D1B5ABC1800C637DE;
+			productRefGroup = CF3337871B5ABC1800C637DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF3337851B5ABC1800C637DE /* BadgeKeeper.Sample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF3337841B5ABC1800C637DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF3337971B5ABC1800C637DE /* Images.xcassets in Resources */,
+				CFAFC0D01B6FE26D00FA174B /* BKAchievementViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF3337821B5ABC1800C637DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF33386C1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m in Sources */,
+				CF3338621B5B25D200C637DE /* BKUnlockedUserAchievementList.m in Sources */,
+				CF33383B1B5B03E600C637DE /* BKKeyValuePair.m in Sources */,
+				CF3338691B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m in Sources */,
+				CF33378F1B5ABC1800C637DE /* AppDelegate.m in Sources */,
+				CF3338601B5B25D200C637DE /* BKUserAchievement.m in Sources */,
+				CF33378C1B5ABC1800C637DE /* main.m in Sources */,
+				CF33383F1B5B069300C637DE /* BKNetwork.m in Sources */,
+				CF3338661B5B2D3100C637DE /* BKNetPacket.m in Sources */,
+				CF3338611B5B25D200C637DE /* BKUnlockedUserAchievement.m in Sources */,
+				CFAFC0CF1B6FE26D00FA174B /* BKAchievementViewController.m in Sources */,
+				CFCE2FCE1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m in Sources */,
+				CF3337E21B5AFB3800C637DE /* BadgeKeeper.m in Sources */,
+				CF33385F1B5B25D200C637DE /* BKProjectAchievement.m in Sources */,
+				CF3338511B5B20CC00C637DE /* BKObject.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CF3337A71B5ABC1800C637DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CF3337A81B5ABC1800C637DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF3337AA1B5ABC1800C637DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = BadgeKeeper.Sample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.badgekeeper.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = BadgeKeeper.Sample;
+			};
+			name = Debug;
+		};
+		CF3337AB1B5ABC1800C637DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = BadgeKeeper.Sample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.badgekeeper.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = BadgeKeeper.Sample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF3337811B5ABC1800C637DE /* Build configuration list for PBXProject "BadgeKeeper.Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF3337A71B5ABC1800C637DE /* Debug */,
+				CF3337A81B5ABC1800C637DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF3337A91B5ABC1800C637DE /* Build configuration list for PBXNativeTarget "BadgeKeeper.Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF3337AA1B5ABC1800C637DE /* Debug */,
+				CF3337AB1B5ABC1800C637DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF33377E1B5ABC1800C637DE /* Project object */;
+}

@@ -1,20 +1,17 @@
 //
-//  BKObject.h
+//  AppDelegate.h
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 26.09.15.
 //  Copyright (c) 2015 Alexander Pukhov, BadgeKeeper. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
-@interface BKObject : NSObject {
-    
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-#pragma mark - Root
-
-- (instancetype)initWithJSON:(NSDictionary *)json;
+@property (strong, nonatomic) UIWindow *window;
 
 @end
+

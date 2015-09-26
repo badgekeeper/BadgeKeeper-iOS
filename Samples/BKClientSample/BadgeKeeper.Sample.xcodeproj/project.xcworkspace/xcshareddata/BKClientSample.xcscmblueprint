@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E20B56195B91C57D0779F7CDED72B8D6CBE98343",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E20B56195B91C57D0779F7CDED72B8D6CBE98343" : 0,
+    "3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "65236710-77AC-4A39-93E8-A0F31C4F0865",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E20B56195B91C57D0779F7CDED72B8D6CBE98343" : "badgekeeper.ios\/",
+    "3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D" : "BKClient"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BKClientSample",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Samples\/BKClientSample\/BKClientSample.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/HDSRepo\/BKClient.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/badgekeeper\/BadgeKeeper-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E20B56195B91C57D0779F7CDED72B8D6CBE98343"
+    }
+  ]
+}

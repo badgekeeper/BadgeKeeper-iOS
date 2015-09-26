@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>65236710-77AC-4A39-93E8-A0F31C4F0865</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BKClientSample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D</key>
+		<string>https://github.com/HDSRepo/BKClient.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Samples/BKClientSample/BKClientSample.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/HDSRepo/BKClient.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3C3FCF65EBE7ADCB35E086C9C4F62E651B429C3D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BKClient</string>
+		</dict>
+	</array>
+</dict>
+</plist>

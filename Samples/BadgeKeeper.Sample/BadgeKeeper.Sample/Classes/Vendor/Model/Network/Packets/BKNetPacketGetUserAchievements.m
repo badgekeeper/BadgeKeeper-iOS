@@ -15,7 +15,7 @@
 #pragma mark - Properties
 
 - (NSString *)relativeURL {
-    return [NSString stringWithFormat:@"projects/%@/users/%@/%@",
+    return [NSString stringWithFormat:@"api/gateway/%@/users/get/%@?shouldLoadIcons=%@",
             self.projectId,
             self.userId,
             (self.shouldLoadIcons) ? @"true" : @"false"];

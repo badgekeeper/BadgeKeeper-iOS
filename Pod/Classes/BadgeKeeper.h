@@ -35,8 +35,10 @@ FOUNDATION_EXPORT NSString *const kBKNotificationDidReceiveProjectAchievements;
 FOUNDATION_EXPORT NSString *const kBKNotificationFailedReceiveProjectAchievements;
 FOUNDATION_EXPORT NSString *const kBKNotificationDidReceiveUserAchievements;
 FOUNDATION_EXPORT NSString *const kBKNotificationFailedReceiveUserAchievements;
-FOUNDATION_EXPORT NSString *const kBKNotificationDidSendPreparedValues;
-FOUNDATION_EXPORT NSString *const kBKNotificationFailedSendPreparedValues;
+FOUNDATION_EXPORT NSString *const kBKNotificationDidPostPreparedValues;
+FOUNDATION_EXPORT NSString *const kBKNotificationFailedPostPreparedValues;
+FOUNDATION_EXPORT NSString *const kBKNotificationDidIncrementPreparedValues;
+FOUNDATION_EXPORT NSString *const kBKNotificationFailedIncrementPreparedValues;
 
 // notifications keys
 FOUNDATION_EXPORT NSString *const kBKNotificationKeyResponseObject;
@@ -72,17 +74,36 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 - (void)requestUserAchievements;
 
 /*!
- Sets a new value for specified achievement ID.
- @param value New value to set. Old value will be overwritten.
- @param achievementId Target achievement ID.
+ Sets a new value for specified key.
+ @param value - New value to set. Old value will be overwritten or incremented depending of request.
+ @param key - Target key to validate achievements.
  */
-- (void)prepareValue:(double)value forAchievementId:(NSString *)achievementId;
+- (void)prepareValue:(double)value forKey:(NSString *)key;
 
 /*!
- Sends all prepared values to server.
- @discussion Before sending values must be prepared via <tt>prepareValue:forAchievementId:</tt> method calls. After successful sending all prepared values will be removed from memory.
+ Sends all prepared values to server to overwrite them and validate achievements completion.
+ @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
+ */
+- (void)postPreparedValues;
+
+/*!
+ Overloaded postPreparedValues for specific user.
+ @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
  @param userId User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
-- (void)sendPreparedValuesForUserId:(NSString *)userId;
+- (void)postPreparedValuesForUserId:(NSString *)userId;
+
+/*!
+ Sends all prepared values to server to increment them and validate achievements completion.
+ @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
+ */
+- (void)incrementPreparedValues;
+
+/*!
+ Overloaded incrementPreparedValues for specific user.
+ @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
+ @param userId User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
+ */
+- (void)incrementPreparedValuesForUserId:(NSString *)userId;
 
 @end

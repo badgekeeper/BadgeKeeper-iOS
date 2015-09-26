@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */; settings = {ASSET_TAGS = (); }; };
 		CF33378C1B5ABC1800C637DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33378B1B5ABC1800C637DE /* main.m */; };
 		CF33378F1B5ABC1800C637DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33378E1B5ABC1800C637DE /* AppDelegate.m */; };
 		CF3337971B5ABC1800C637DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3337961B5ABC1800C637DE /* Images.xcassets */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD263CB51BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketIncrementUserChanges.h; sourceTree = "<group>"; };
+		CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketIncrementUserChanges.m; sourceTree = "<group>"; };
 		CF3337861B5ABC1800C637DE /* BadgeKeeper.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadgeKeeper.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF33378A1B5ABC1800C637DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF33378B1B5ABC1800C637DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -100,7 +103,6 @@
 				CF33378A1B5ABC1800C637DE /* Info.plist */,
 				CF33378B1B5ABC1800C637DE /* main.m */,
 			);
-			name = BadgeKeeper.Sample;
 			path = BadgeKeeper.Sample;
 			sourceTree = "<group>";
 		};
@@ -180,6 +182,8 @@
 				CF33386B1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m */,
 				CFCE2FCC1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.h */,
 				CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */,
+				CD263CB51BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.h */,
+				CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */,
 			);
 			path = Packets;
 			sourceTree = "<group>";
@@ -279,6 +283,7 @@
 				CF3337E21B5AFB3800C637DE /* BadgeKeeper.m in Sources */,
 				CF33385F1B5B25D200C637DE /* BKProjectAchievement.m in Sources */,
 				CF3338511B5B20CC00C637DE /* BKObject.m in Sources */,
+				CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

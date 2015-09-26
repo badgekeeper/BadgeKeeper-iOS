@@ -9,19 +9,20 @@
 #import "BKAchievementViewController.h"
 #import "BadgeKeeper.h"
 
-
 @interface BKAchievementViewController () {
     
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *loginTextField;
-@property (weak, nonatomic) IBOutlet UIButton    *clickmeButton;
+@property (weak, nonatomic) IBOutlet UIButton    *postVariablesButton;
+@property (weak, nonatomic) IBOutlet UIButton    *incrementVariablesButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 
 #pragma mark - Actions
 
-- (IBAction)clickmeButtonClick:(UIButton *)sender;
+- (IBAction)postButtonClick:(UIButton *)sender;
+- (IBAction)incrementButtonClick:(UIButton *)sender;
 
 
 #pragma mark - Utils
@@ -46,18 +47,31 @@
     
     self.title = @"BadgeKeeper Sample";
     
-    // subscribe
+    // subscribe post
     [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(clientDidSendValues:)
-     name:kBKNotificationDidSendPreparedValues
-     object:nil];
+                                addObserver:self
+                                selector:@selector(clientDidSendValues:)
+                                name:kBKNotificationDidPostPreparedValues
+                                object:nil];
     
     [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(clientDidSendValues:)
-     name:kBKNotificationFailedSendPreparedValues
-     object:nil];
+                                addObserver:self
+                                selector:@selector(clientDidReceiveError:)
+                                name:kBKNotificationFailedPostPreparedValues
+                                object:nil];
+    
+    // subscribe increment
+    [[NSNotificationCenter defaultCenter]
+                                addObserver:self
+                                selector:@selector(clientDidSendValues:)
+                                name:kBKNotificationDidIncrementPreparedValues
+                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+                                addObserver:self
+                                selector:@selector(clientDidReceiveError:)
+                                name:kBKNotificationFailedIncrementPreparedValues
+                                object:nil];
 }
 
 - (void)dealloc {
@@ -67,26 +81,44 @@
 
 #pragma mark - Actions
 
-- (IBAction)clickmeButtonClick:(UIButton *)sender {
-    NSString *login = [self.loginTextField.text
-                       stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+- (IBAction)postButtonClick:(UIButton *)sender {
+    if ([self isLoginValid]) {
+        [self setLoading:YES];
+        
+        static NSInteger posts = 0;
+        posts++;
+        
+        [BadgeKeeper instance].userId = self.loginTextField.text;
+        [[BadgeKeeper instance] prepareValue:posts forKey:@"Clicks"];
+        [[BadgeKeeper instance] postPreparedValues];
+    }
+}
+
+- (IBAction)incrementButtonClick:(UIButton *)sender {
+    if ([self isLoginValid]) {
+        [self setLoading:YES];
+
+        static NSInteger increments = 0;
+        increments++;
+        
+        [BadgeKeeper instance].userId = self.loginTextField.text;
+        [[BadgeKeeper instance] prepareValue:increments forKey:@"Clicks"];
+        [[BadgeKeeper instance] incrementPreparedValues];
+    }
+}
+
+- (BOOL)isLoginValid {
+    NSString *login = self.loginTextField.text;
     if (login.length == 0) {
         [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"You should specify your Login first!"
+                                    message:@"You should specify your User ID first!"
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
-        return;
+        return NO;
     }
-    static NSInteger clicks = 0;
-    ++clicks;
     
-    [self setLoading:YES];
-    
-    [BadgeKeeper instance].userId = login;
-    [[BadgeKeeper instance] prepareValue:clicks forAchievementId:@"Achievement 1"];
-    [[BadgeKeeper instance] sendPreparedValuesForUserId:nil];
+    return YES;
 }
 
 
@@ -95,12 +127,14 @@
 - (void)setLoading:(BOOL)isLoading {
     if (isLoading) {
         self.loginTextField.enabled = NO;
-        self.clickmeButton.enabled = NO;
+        self.postVariablesButton.enabled = NO;
+        self.incrementVariablesButton.enabled = NO;
         [self.activityIndicatorView startAnimating];
     }
     else {
         self.loginTextField.enabled = YES;
-        self.clickmeButton.enabled = YES;
+        self.postVariablesButton.enabled = YES;
+        self.incrementVariablesButton.enabled = YES;
         [self.activityIndicatorView stopAnimating];
     }
 }
@@ -109,15 +143,23 @@
 #pragma mark - Observing BadgeKeeper
 
 - (void)clientDidSendValues:(NSNotification *)notification {
+    NSArray *value = notification.userInfo[kBKNotificationKeyResponseObject];
+    NSLog(@"%@", value);
+    //TODO: show response data
+
     [self setLoading:NO];
-    
-    NSString *value = NSStringFromClass([notification.userInfo[kBKNotificationKeyResponseObject] class]);
-    
-    [[[UIAlertView alloc] initWithTitle:@"Response"
-                                message:value
+}
+
+- (void)clientDidReceiveError:(NSNotification *)notification {
+    NSError *error = notification.userInfo[kBKNotificationKeyErrorObject];
+
+    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                message:error.localizedDescription
                                delegate:nil
                       cancelButtonTitle:@"OK"
                       otherButtonTitles:nil] show];
+    
+    [self setLoading:NO];
 }
 
 @end

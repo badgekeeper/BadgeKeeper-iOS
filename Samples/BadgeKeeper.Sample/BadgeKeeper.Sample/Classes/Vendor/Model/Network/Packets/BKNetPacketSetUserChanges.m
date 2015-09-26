@@ -15,7 +15,7 @@
 #pragma mark - Properties
 
 - (NSString *)relativeURL {
-    return [NSString stringWithFormat:@"projects/%@/users/%@",
+    return [NSString stringWithFormat:@"api/gateway/%@/users/post/%@",
             self.projectId,
             self.userId];
 }

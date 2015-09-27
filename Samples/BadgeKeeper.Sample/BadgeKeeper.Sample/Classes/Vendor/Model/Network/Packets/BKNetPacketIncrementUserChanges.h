@@ -9,16 +9,11 @@
 #import "BKNetPacket.h"
 #import "BKKeyValuePair.h"
 #import "BKUnlockedUserAchievementList.h"
+#import "BKNetPacketSetUserChanges.h"
 
 
-@interface BKNetPacketIncrementUserChanges : BKNetPacket {
+@interface BKNetPacketIncrementUserChanges : BKNetPacketSetUserChanges {
     
 }
-// in
-@property (copy, nonatomic)   NSString *projectId;
-@property (copy, nonatomic)   NSString *userId;
-@property (strong, nonatomic) NSArray  *pairs;
-// out
-@property (readonly, nonatomic) BKUnlockedUserAchievementList *achievementsUnlocked;
 
 @end

@@ -24,13 +24,15 @@
 #pragma mark - BKNetPacket
 
 - (NSString *)body {
-    NSMutableString *body = [[NSMutableString alloc] initWithString:@"[ "];
+    NSMutableString *body = [[NSMutableString alloc] initWithString:@"["];
     
     for (BKKeyValuePair *pair in self.pairs) {
         [body appendString:pair.description];
+        if ([self.pairs lastObject] != pair) {
+            [body appendString:@","];
+        }
     }
-    [body appendString:@" ]"];
-    
+    [body appendString:@"]"];
     return body;
 }
 

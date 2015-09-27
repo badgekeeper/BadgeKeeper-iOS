@@ -32,9 +32,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"{ \"Key\": %@, \"Value\": %f }",
-            self.key,
-            self.value.doubleValue];
+    return [NSString stringWithFormat:@"{\"Key\":\"%@\",\"Value\":%f}", self.key, self.value.doubleValue];
 }
 
 @end

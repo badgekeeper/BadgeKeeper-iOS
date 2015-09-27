@@ -20,22 +20,4 @@
             self.userId];
 }
 
-
-#pragma mark - BKNetPacket
-
-- (NSString *)body {
-    NSMutableString *body = [[NSMutableString alloc] initWithString:@"[ "];
-    
-    for (BKKeyValuePair *pair in self.pairs) {
-        [body appendString:pair.description];
-    }
-    [body appendString:@" ]"];
-    
-    return body;
-}
-
-- (void)parseJSON:(id)json {
-    _achievementsUnlocked = [[BKUnlockedUserAchievementList alloc] initWithJSON:json];
-}
-
 @end

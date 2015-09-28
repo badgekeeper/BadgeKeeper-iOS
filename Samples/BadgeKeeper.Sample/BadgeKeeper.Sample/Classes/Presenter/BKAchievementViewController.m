@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton    *postVariablesButton;
 @property (weak, nonatomic) IBOutlet UIButton    *incrementVariablesButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UITextView *responseTextView;
 
 
 #pragma mark - Actions
@@ -84,12 +85,14 @@
 - (IBAction)postButtonClick:(UIButton *)sender {
     if ([self isLoginValid]) {
         [self setLoading:YES];
+        [self.responseTextView setText:@""];
         
         static NSInteger posts = 0;
         posts++;
         
         [BadgeKeeper instance].userId = self.loginTextField.text;
-        [[BadgeKeeper instance] prepareValue:posts forKey:@"Clicks"];
+        [[BadgeKeeper instance] preparePostValue:posts forKey:@"Clicks"];
+        [[BadgeKeeper instance] preparePostValue:posts forKey:@"Posts"];
         [[BadgeKeeper instance] postPreparedValues];
     }
 }
@@ -97,12 +100,14 @@
 - (IBAction)incrementButtonClick:(UIButton *)sender {
     if ([self isLoginValid]) {
         [self setLoading:YES];
+        [self.responseTextView setText:@""];
 
         static NSInteger increments = 0;
         increments++;
         
         [BadgeKeeper instance].userId = self.loginTextField.text;
-        [[BadgeKeeper instance] prepareValue:increments forKey:@"Clicks"];
+        [[BadgeKeeper instance] prepareIncrementValue:increments forKey:@"Clicks"];
+        [[BadgeKeeper instance] prepareIncrementValue:increments forKey:@"Posts"];
         [[BadgeKeeper instance] incrementPreparedValues];
     }
 }
@@ -110,11 +115,7 @@
 - (BOOL)isLoginValid {
     NSString *login = self.loginTextField.text;
     if (login.length == 0) {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"You should specify your User ID first!"
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
+        [self showAlertWithMessage:@"You should specify your User ID first!"];
         return NO;
     }
     
@@ -143,23 +144,36 @@
 #pragma mark - Observing BadgeKeeper
 
 - (void)clientDidSendValues:(NSNotification *)notification {
-    NSArray *value = notification.userInfo[kBKNotificationKeyResponseObject];
-    NSLog(@"%@", value);
-    //TODO: show response data
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSArray *value = notification.userInfo[kBKNotificationKeyResponseObject];
+        NSString *text = [NSString stringWithFormat:@"Response: %@", [value componentsJoinedByString:@", "]];
+        [self.responseTextView setText:text];
 
-    [self setLoading:NO];
+        [self setLoading:NO];
+    });
 }
 
 - (void)clientDidReceiveError:(NSNotification *)notification {
-    NSError *error = notification.userInfo[kBKNotificationKeyErrorObject];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSError *error = notification.userInfo[kBKNotificationKeyErrorObject];
+        NSString *text = [NSString stringWithFormat:@"Code: %ld, Message: %@",
+                          (unsigned long)error.code, error.localizedDescription];
+        [self.responseTextView setText:text];
+        
+        [self setLoading:NO];
+    });
+}
 
-    [[[UIAlertView alloc] initWithTitle:@"Error"
-                                message:error.localizedDescription
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+- (void)showAlertWithMessage:(NSString *)message {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
-    [self setLoading:NO];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

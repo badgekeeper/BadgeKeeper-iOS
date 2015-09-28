@@ -46,27 +46,56 @@ NSString *const baseURL = @"https://api.badgekeeper.net/";
                      (unsigned long)bodyData.length] forHTTPHeaderField:@"Content-Length"];
         [r setHTTPBody:bodyData];
     }
+    
+    id handler = ^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            failure(response, error);
+        }
+        else {
+            NSError *jsonError = nil;
+            NSDictionary *json = [NSJSONSerialization
+                                  JSONObjectWithData:data
+                                  options:NSJSONReadingAllowFragments
+                                  error:&jsonError];
+            if (jsonError) {
+                failure(response, jsonError);
+            }
+            else {
+                NSError *jsonValidationError = [BKNetwork validateJsonResponse:json];
+                if (jsonValidationError) {
+                    failure(response, jsonValidationError);
+                } else {
+                    success(json, response);
+                }
+            }
+        }
+    };
+    
     // launch data task
-    [[session dataTaskWithRequest:r
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                    if (error) {
-                        failure(response, error);
-                    }
-                    else {
-                        NSError *jsonError = nil;
-                        NSDictionary *json = [NSJSONSerialization
-                                              JSONObjectWithData:data
-                                              options:NSJSONReadingAllowFragments
-                                              error:&jsonError];
-                        if (jsonError) {
-                            failure(response, jsonError);
-                        }
-                        else {
-                            success(json, response);
-                        }
-                    }
-                }]
-     resume];
+    [[session dataTaskWithRequest:r completionHandler:handler] resume];
+}
+
++ (NSError *)validateJsonResponse:(NSDictionary *)response {
+    id result = [response valueForKey:@"Result"];
+    id error = [response valueForKey:@"Error"];
+
+    // Generate internal server error (maybe should read "Message" from response)
+    if (!result && !error) {
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:@"Internal server error" forKey:NSLocalizedDescriptionKey];
+        return [NSError errorWithDomain:@"Server error." code:-1 userInfo:details];
+    }
+    // Read server error
+    else if (error && error != [NSNull null]) {
+        NSInteger const code = [[error valueForKey:@"Code"] integerValue];
+        NSString *message = [error valueForKey:@"Message"];
+        
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:message forKey:NSLocalizedDescriptionKey];
+        return [NSError errorWithDomain:@"Request error." code:code userInfo:details];
+    }
+    
+    return nil;
 }
 
 @end

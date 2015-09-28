@@ -75,10 +75,17 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 
 /*!
  Sets a new value for specified key.
- @param value - New value to set. Old value will be overwritten or incremented depending of request.
+ @param value - New value to set. Old value will be overwritten.
  @param key - Target key to validate achievements.
  */
-- (void)prepareValue:(double)value forKey:(NSString *)key;
+- (void)preparePostValue:(double)value forKey:(NSString *)key;
+
+/*!
+ Sets a new value for specified key.
+ @param value - Increment old value.
+ @param key - Target key to validate achievements.
+ */
+- (void)prepareIncrementValue:(double)value forKey:(NSString *)key;
 
 /*!
  Sends all prepared values to server to overwrite them and validate achievements completion.

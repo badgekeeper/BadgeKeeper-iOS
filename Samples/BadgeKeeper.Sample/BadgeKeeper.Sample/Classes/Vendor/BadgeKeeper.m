@@ -53,7 +53,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 
 @interface BadgeKeeper () {
-    NSMutableDictionary *usersValues;
+    NSMutableDictionary *postValues;
     NSMutableDictionary *incrementValues;
 }
 
@@ -87,7 +87,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 - (instancetype)initPrivate {
     self = [super init];
     if (self) {
-        usersValues = [NSMutableDictionary new];
+        postValues = [NSMutableDictionary new];
         incrementValues = [NSMutableDictionary new];
     }
     return self;
@@ -140,15 +140,22 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
            }];
 }
 
-- (void)prepareValue:(double)value forKey:(NSString *)key {
+- (void)preparePostValue:(double)value forKey:(NSString *)key {
+    [self prepareValue:value forKey:key intoDictionary:postValues];
+}
+
+- (void)prepareIncrementValue:(double)value forKey:(NSString *)key {
+    [self prepareValue:value forKey:key intoDictionary:incrementValues];
+}
+
+- (void)prepareValue:(double)value forKey:(NSString *)key intoDictionary:(NSMutableDictionary *)dictionary {
     NSString *userId = self.userId;
-    
     BKKeyValuePair *pair = [[BKKeyValuePair alloc] initWithKey:key value:@(value)];
-    // store pair
-    if (![usersValues objectForKey:userId]) {
-        [usersValues setObject:[NSMutableArray new] forKey:userId];
+    // Store pair
+    if (![dictionary objectForKey:userId]) {
+        [dictionary setObject:[NSMutableArray new] forKey:userId];
     }
-    [usersValues[userId] addObject:pair];
+    [dictionary[userId] addObject:pair];
 }
 
 - (void)postPreparedValues {
@@ -156,30 +163,29 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 }
 
 - (void)postPreparedValuesForUserId:(NSString *)userId {
-    NSArray *pairs = [usersValues objectForKey:userId];
-    NSAssert(pairs, @"User has no prepared values.");
-    BKNetPacketSetUserChanges *pack = [BKNetPacketSetUserChanges new];
+    // Validate values
+    NSArray *pairs = [postValues objectForKey:userId];
     
-    pack.projectId = self.projectId;
-    pack.userId = userId;
-    pack.pairs = pairs;
-    
-    [self sendPacket:pack
-           onSuccess:^(BKNetPacket *packet) {
-               BKNetPacketSetUserChanges *data = (BKNetPacketSetUserChanges *)packet;
-               [usersValues removeObjectForKey:data.userId];
-               NSArray *unlockedBadges = [NSArray array];
-               if (data && data.achievementsUnlocked && data.achievementsUnlocked.achievements) {
-                   unlockedBadges = data.achievementsUnlocked.achievements;
+    if (pairs && pairs.count > 0) {
+        BKNetPacketSetUserChanges *packet = [BKNetPacketSetUserChanges new];
+        packet.projectId = self.projectId;
+        packet.userId = userId;
+        packet.pairs = [pairs mutableCopy];
+        
+        // Clear values
+        [postValues removeObjectForKey:userId];
+        
+        [self sendPacket:packet
+               onSuccess:^(BKNetPacket *packet) {
+                   // remove prepared values
+                   BKNetPacketSetUserChanges *data = (BKNetPacketSetUserChanges *)packet;
+                   NSArray *unlocked = [self getUnlockedAchievements:data];
+                   [self notify:kBKNotificationDidIncrementPreparedValues responseObject:unlocked];
                }
-               
-               [self notify:kBKNotificationDidPostPreparedValues responseObject:unlockedBadges];
-           }
-           onFailure:^(NSURLResponse *response, NSError *error) {
-               [self notifyError:kBKNotificationFailedPostPreparedValues
-                        response:response
-                           error:error];
-           }];
+               onFailure:^(NSURLResponse *response, NSError *error) {
+                   [self notifyError:kBKNotificationFailedIncrementPreparedValues response:response error:error];
+               }];
+    }
 }
 
 - (void)incrementPreparedValues {
@@ -187,33 +193,37 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 }
 
 - (void)incrementPreparedValuesForUserId:(NSString *)userId {
-    NSArray *pairs = [usersValues objectForKey:userId];
-    NSAssert(pairs, @"User has no prepared values.");
-    BKNetPacketIncrementUserChanges *pack = [BKNetPacketIncrementUserChanges new];
+    // Validate values
+    NSArray *pairs = [incrementValues objectForKey:userId];
     
-    pack.projectId = self.projectId;
-    pack.userId = userId;
-    pack.pairs = pairs;
-    
-    [self sendPacket:pack
-           onSuccess:^(BKNetPacket *packet) {
-               // remove prepared values
-               BKNetPacketIncrementUserChanges *data = (BKNetPacketIncrementUserChanges *)packet;
-               [usersValues removeObjectForKey:data.userId];
-               NSArray *unlockedBadges = [NSArray array];
-               if (data && data.achievementsUnlocked && data.achievementsUnlocked.achievements) {
-                   unlockedBadges = data.achievementsUnlocked.achievements;
+    if (pairs && pairs.count > 0) {
+        BKNetPacketIncrementUserChanges *packet = [BKNetPacketIncrementUserChanges new];
+        packet.projectId = self.projectId;
+        packet.userId = userId;
+        packet.pairs = [incrementValues objectForKey:userId];
+
+        // Clear values
+        [incrementValues removeObjectForKey:userId];
+        
+        [self sendPacket:packet
+               onSuccess:^(BKNetPacket *packet) {
+                   BKNetPacketIncrementUserChanges *data = (BKNetPacketIncrementUserChanges *)packet;
+                   NSArray *unlocked = [self getUnlockedAchievements:data];
+                   [self notify:kBKNotificationDidPostPreparedValues responseObject:unlocked];
                }
-               
-               [self notify:kBKNotificationDidIncrementPreparedValues responseObject:unlockedBadges];
-           }
-           onFailure:^(NSURLResponse *response, NSError *error) {
-               [self notifyError:kBKNotificationFailedIncrementPreparedValues
-                        response:response
-                           error:error];
-           }];
+               onFailure:^(NSURLResponse *response, NSError *error) {
+                   [self notifyError:kBKNotificationFailedPostPreparedValues response:response error:error];
+               }];
+    }
 }
 
+- (NSArray *)getUnlockedAchievements:(BKNetPacketSetUserChanges *)packet {
+    NSArray *result = [NSArray new];
+    if (packet.achievementsUnlocked && packet.achievementsUnlocked.achievements) {
+        result = packet.achievementsUnlocked.achievements;
+    }
+    return result;
+}
 
 #pragma mark - Network
 
@@ -224,7 +234,6 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
                 onSuccess:^(id json, NSURLResponse *response) {
                     if (success) {
                         [packet parseJSON:json];
-                        
                         success(packet);
                     }
                 }
@@ -239,20 +248,14 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 #pragma mark - Notifications
 
 - (void)notify:(NSString *)notificationName responseObject:(id)object {
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:notificationName
-     object:self
-     userInfo:@{kBKNotificationKeyResponseObject : object}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self
+                                                      userInfo:@{kBKNotificationKeyResponseObject:object}];
 }
 
-- (void)notifyError:(NSString *)notificationName
-           response:(NSURLResponse *)response
-              error:(NSError *)error {
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:notificationName
-     object:self
-     userInfo:@{kBKNotificationKeyErrorResponse : response,
-                kBKNotificationKeyErrorObject : error}];
+- (void)notifyError:(NSString *)notificationName response:(NSURLResponse *)response error:(NSError *)error {
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self
+                                                      userInfo:@{kBKNotificationKeyErrorResponse:response,
+                                                                 kBKNotificationKeyErrorObject:error}];
 }
 
 @end

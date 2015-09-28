@@ -91,14 +91,14 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 
 /*!
  Sends all prepared values to server to overwrite them and validate achievements completion.
- @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
+ @discussion Before sending values must be prepared via <tt>preparePostValue:forKey:</tt> method calls.
  */
 - (void)postPreparedValues;
 
 /*!
  Overloaded postPreparedValues for specific user.
- @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
- @param userId User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
+ @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls.
+ @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
 - (void)postPreparedValuesForUserId:(NSString *)userId;
 
@@ -111,8 +111,16 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 /*!
  Overloaded incrementPreparedValues for specific user.
  @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
- @param userId User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
+ @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
 - (void)incrementPreparedValuesForUserId:(NSString *)userId;
+
+/*!
+ Try to read reward value from storage.
+ @param name - Which value to reade.
+ @param out values - Output array values for <tt>name</tt> parameter.
+ @return - YES (if parameter successfully taken), NO (otherwise).
+ */
+- (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values;
 
 @end

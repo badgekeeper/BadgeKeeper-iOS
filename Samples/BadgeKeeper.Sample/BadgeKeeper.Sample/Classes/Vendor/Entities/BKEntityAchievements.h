@@ -1,5 +1,5 @@
 //
-//  Rewards.h
+//  BKEntityAchievements.h
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 28.09.15.
@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface Rewards : NSManagedObject
+@interface BKEntityAchievements : NSManagedObject
 
 @property (nonnull, nonatomic, retain) NSString *name;
-@property (nonnull, nonatomic, retain) NSNumber *value;
+@property (nullable, nonatomic, retain) NSString *desc;
+@property (nullable, nonatomic, retain) NSData *icon;
 
 @end

@@ -1,17 +1,16 @@
 //
-//  Achievements.m
+//  BKEntityRewards.m
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 28.09.15.
 //  Copyright © 2015 BadgeKeeper. All rights reserved.
 //
 
-#import "Achievements.h"
+#import "BKEntityRewards.h"
 
-@implementation Achievements
+@implementation BKEntityRewards
 
 @dynamic name;
-@dynamic desc;
-@dynamic icon;
+@dynamic value;
 
 @end

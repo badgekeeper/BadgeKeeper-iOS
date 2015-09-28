@@ -27,6 +27,7 @@
  */
 
 #import <Foundation/Foundation.h>
+
 #import "BKUserAchievement.h"
 #import "BKUnlockedUserAchievementList.h"
 
@@ -48,8 +49,9 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 
 /// Manages BadgeKeeper service environment.
 @interface BadgeKeeper : NSObject {
-    
+
 }
+
 /// Active BadgeKeeper project ID.
 @property (copy, nonatomic) NSString *projectId;
 

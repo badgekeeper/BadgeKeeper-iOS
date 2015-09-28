@@ -16,6 +16,13 @@ Pod::Spec.new do |s|
     'test' => ['Pod/Assets/*.png']
   }
 
+  s.frameworks = 'CoreData'
+  
+  # TODO:
+  #s.source_files  = 'CoreDataPodSample/Classes', 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld', 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld/*.xcdatamodel'
+  #s.resources = [ 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld','CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld/*.xcdatamodel']
+  #s.preserve_paths = 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld'
+  
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'

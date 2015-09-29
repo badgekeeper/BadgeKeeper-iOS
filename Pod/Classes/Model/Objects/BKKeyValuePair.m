@@ -17,8 +17,9 @@
 - (instancetype)initWithJSON:(NSDictionary *)json {
     self = [super initWithJSON:json];
     if (self) {
-        self.key = json[@"Key"];
-        self.value = json[@"Value"];
+        self.key = [json valueForKey:@"Name"];
+        double const value = [[json valueForKey:@"Value"] doubleValue];
+        self.value = [NSNumber numberWithDouble:value];
     }
     return self;
 }
@@ -27,7 +28,7 @@
 #pragma mark - Root
 
 - (instancetype)initWithKey:(NSString *)key value:(NSNumber *)value {
-    return [self initWithJSON:@{@"Key": key, @"Value": value}];
+    return [self initWithJSON:@{@"Name": key, @"Value": value}];
 }
 
 

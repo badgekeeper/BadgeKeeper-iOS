@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BadgeKeeper"
-  s.version          = "0.1.5"
+  s.version          = "0.1.6"
   s.summary          = "BadgeKeeper service lightweight client library."
   s.homepage         = "https://github.com/badgekeeper/BadgeKeeper-iOS"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -8,22 +8,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/badgekeeper/BadgeKeeper-iOS.git", :tag => s.version.to_s }
   s.social_media_url = 'http://twitter.com/badge_keeper'
 
-  s.platform     = :ios, '4.0'
+  s.platform     = :ios, '4.3'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'test' => ['Pod/Assets/*.png']
-  }
+  s.resources = [ 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld','Pod/Classes/Entities/BadgeKeeper.xcdatamodeld/*.xcdatamodel']
+  s.preserve_paths = 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld'
 
   s.frameworks = 'CoreData'
-  
-  # TODO:
-  #s.source_files  = 'CoreDataPodSample/Classes', 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld', 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld/*.xcdatamodel'
-  #s.resources = [ 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld','CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld/*.xcdatamodel']
-  #s.preserve_paths = 'CoreDataPodSample/Classes/CoreDataPodSample.xcdatamodeld'
-  
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

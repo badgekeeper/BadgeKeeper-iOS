@@ -28,6 +28,7 @@
 
 #import "BadgeKeeper.h"
 #import "BKNetwork.h"
+#import "BKEntityStorage.h"
 #import "BKNetPacketGetProjectAchievements.h"
 #import "BKNetPacketGetUserAchievements.h"
 #import "BKNetPacketSetUserChanges.h"
@@ -55,6 +56,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 @interface BadgeKeeper () {
     NSMutableDictionary *postValues;
     NSMutableDictionary *incrementValues;
+    BKEntityStorage *storage;
 }
 
 #pragma mark - Network
@@ -76,7 +78,6 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 @implementation BadgeKeeper
 
-
 #pragma mark - Root
 
 - (instancetype)init {
@@ -89,6 +90,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     if (self) {
         postValues = [NSMutableDictionary new];
         incrementValues = [NSMutableDictionary new];
+        storage = [[BKEntityStorage alloc] init];
     }
     return self;
 }
@@ -180,6 +182,8 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
                    // remove prepared values
                    BKNetPacketSetUserChanges *data = (BKNetPacketSetUserChanges *)packet;
                    NSArray *unlocked = [self getUnlockedAchievements:data];
+                   [self saveRewardsForUnlockedAchievements:data.achievementsUnlocked];
+                   
                    [self notify:kBKNotificationDidIncrementPreparedValues responseObject:unlocked];
                }
                onFailure:^(NSURLResponse *response, NSError *error) {
@@ -209,6 +213,8 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
                onSuccess:^(BKNetPacket *packet) {
                    BKNetPacketIncrementUserChanges *data = (BKNetPacketIncrementUserChanges *)packet;
                    NSArray *unlocked = [self getUnlockedAchievements:data];
+                   [self saveRewardsForUnlockedAchievements:data.achievementsUnlocked];
+                   
                    [self notify:kBKNotificationDidPostPreparedValues responseObject:unlocked];
                }
                onFailure:^(NSURLResponse *response, NSError *error) {
@@ -223,6 +229,32 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
         result = packet.achievementsUnlocked.achievements;
     }
     return result;
+}
+
+- (void)saveRewardsForUnlockedAchievements:(BKUnlockedUserAchievementList *)list {
+    if (list.achievements) {
+        for (BKUnlockedUserAchievement *achievement in list.achievements) {
+            if (achievement.rewards) {
+                for (BKKeyValuePair *reward in achievement.rewards) {
+                    [storage saveRewardValueForName:reward.key withValue:reward.value.doubleValue];
+                }
+            }
+        }
+    }
+}
+
+#pragma mark - Storage
+
+- (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values {
+    NSArray *result = [storage readRewardValuesForName:name];
+    // Can not read result
+    if (!result) {
+        *values = nil;
+        return NO;
+    }
+    
+    *values = [result mutableCopy];
+    return YES;
 }
 
 #pragma mark - Network
@@ -257,5 +289,6 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
                                                       userInfo:@{kBKNotificationKeyErrorResponse:response,
                                                                  kBKNotificationKeyErrorObject:error}];
 }
+
 
 @end

@@ -23,7 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // setup BadgeKeeper project ID
-    [BadgeKeeper instance].projectId = @"773b0723-ba00-45a3-aa8c-fc3d20f3fd20";
+    [BadgeKeeper instance].projectId = @"a93a3a6d-d5f3-4b5c-b153-538063af6121";
     
     // display simple view controller
     BKAchievementViewController *controller = [[BKAchievementViewController alloc]

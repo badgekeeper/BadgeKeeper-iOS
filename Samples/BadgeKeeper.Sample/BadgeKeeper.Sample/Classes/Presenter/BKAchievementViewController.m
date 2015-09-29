@@ -73,6 +73,9 @@
                                 selector:@selector(clientDidReceiveError:)
                                 name:kBKNotificationFailedIncrementPreparedValues
                                 object:nil];
+    
+    NSArray *rewards = [NSArray new];
+    [[BadgeKeeper instance] readRewardValuesForName:@"gold" withValues:&rewards];
 }
 
 - (void)dealloc {
@@ -91,8 +94,7 @@
         posts++;
         
         [BadgeKeeper instance].userId = self.loginTextField.text;
-        [[BadgeKeeper instance] preparePostValue:posts forKey:@"Clicks"];
-        [[BadgeKeeper instance] preparePostValue:posts forKey:@"Posts"];
+        [[BadgeKeeper instance] preparePostValue:posts forKey:@"x"];
         [[BadgeKeeper instance] postPreparedValues];
     }
 }
@@ -106,8 +108,7 @@
         increments++;
         
         [BadgeKeeper instance].userId = self.loginTextField.text;
-        [[BadgeKeeper instance] prepareIncrementValue:increments forKey:@"Clicks"];
-        [[BadgeKeeper instance] prepareIncrementValue:increments forKey:@"Posts"];
+        [[BadgeKeeper instance] prepareIncrementValue:increments forKey:@"x"];
         [[BadgeKeeper instance] incrementPreparedValues];
     }
 }

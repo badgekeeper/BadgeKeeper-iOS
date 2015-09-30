@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BadgeKeeper"
-  s.version          = "0.1.8"
+  s.version          = "0.1.9"
   s.summary          = "BadgeKeeper service lightweight client library."
   s.homepage         = "https://github.com/badgekeeper/BadgeKeeper-iOS"
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '4.3'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*', 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld', 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld/BadgeKeeper.xcdatamodel'
-  s.resources = [ 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld', 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld/BadgeKeeper.xcdatamodel']
+  s.source_files = 'Pod/Classes', 'Pod/Classes/Model/**/*', 'Pod/Classes/Entities/', 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld', 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld/*.xcdatamodel'
+  s.resources = [ 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld', 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld/*.xcdatamodel']
   s.preserve_paths = 'Pod/Classes/Entities/BadgeKeeper.xcdatamodeld'
   s.requires_arc = true
 

@@ -236,7 +236,9 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
         for (BKUnlockedUserAchievement *achievement in list.achievements) {
             if (achievement.rewards) {
                 for (BKKeyValuePair *reward in achievement.rewards) {
-                    [storage saveRewardValueForName:reward.key withValue:reward.value.doubleValue];
+                    [storage saveRewardValueForName:reward.key
+                                          withValue:reward.value.doubleValue
+                                            forUser:self.userId];
                 }
             }
         }
@@ -246,7 +248,11 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 #pragma mark - Storage
 
 - (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values {
-    NSArray *result = [storage readRewardValuesForName:name];
+    return [self readRewardValuesForName:name forUserId:self.userId withValues:values];
+}
+
+- (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values {
+    NSArray *result = [storage readRewardValuesForName:name forUser:userId];
     // Can not read result
     if (!result) {
         *values = nil;

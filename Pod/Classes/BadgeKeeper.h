@@ -30,6 +30,8 @@
 
 #import "BKUserAchievement.h"
 #import "BKUnlockedUserAchievementList.h"
+#import "BKEntityAchievements.h"
+#import "BKEntityRewards.h"
 
 // notifications
 FOUNDATION_EXPORT NSString *const kBKNotificationDidReceiveProjectAchievements;
@@ -117,10 +119,19 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 
 /*!
  Try to read reward value from storage.
- @param name - Which value to reade.
+ @param name - Which value to read.
  @param out values - Output array values for <tt>name</tt> parameter.
  @return - YES (if parameter successfully taken), NO (otherwise).
  */
 - (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values;
+
+/*!
+ Overloaded readRewardValuesForName for specific user.
+ @param name - Which value to read.
+ @param userId - Which user rewards should read.
+ @param out values - Output array values for <tt>name</tt> parameter.
+ @return - YES (if parameter successfully taken), NO (otherwise).
+ */
+- (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values;
 
 @end

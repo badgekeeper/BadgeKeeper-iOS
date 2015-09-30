@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FF36A872DB6ADA4C97B712D /* libPods-BadgeKeeper.Sample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1DABCEA08C3A78C92193BD /* libPods-BadgeKeeper.Sample.a */; };
 		CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */; settings = {ASSET_TAGS = (); }; };
-		CD78EA021BB9E77A003289B5 /* BadgeKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA001BB9E77A003289B5 /* BadgeKeeper.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		CD78EA0C1BB9E8F6003289B5 /* BKEntityAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA061BB9E8F6003289B5 /* BKEntityAchievements.m */; settings = {ASSET_TAGS = (); }; };
 		CD78EA0E1BB9E8F6003289B5 /* BKEntityRewards.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA0A1BB9E8F6003289B5 /* BKEntityRewards.m */; settings = {ASSET_TAGS = (); }; };
 		CD78EA111BB9F097003289B5 /* BKEntityStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA101BB9F097003289B5 /* BKEntityStorage.m */; settings = {ASSET_TAGS = (); }; };
@@ -32,15 +32,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03B3267B0F25927496E778AE /* Pods-BadgeKeeper.Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadgeKeeper.Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BadgeKeeper.Sample/Pods-BadgeKeeper.Sample.debug.xcconfig"; sourceTree = "<group>"; };
+		A2913841EEAED56730607715 /* Pods-BadgeKeeper.Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadgeKeeper.Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BadgeKeeper.Sample/Pods-BadgeKeeper.Sample.release.xcconfig"; sourceTree = "<group>"; };
 		CD263CB51BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketIncrementUserChanges.h; sourceTree = "<group>"; };
 		CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketIncrementUserChanges.m; sourceTree = "<group>"; };
-		CD78EA011BB9E77A003289B5 /* BadgeKeeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BadgeKeeper.xcdatamodel; sourceTree = "<group>"; };
 		CD78EA051BB9E8F6003289B5 /* BKEntityAchievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityAchievements.h; path = Entities/BKEntityAchievements.h; sourceTree = "<group>"; };
 		CD78EA061BB9E8F6003289B5 /* BKEntityAchievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityAchievements.m; path = Entities/BKEntityAchievements.m; sourceTree = "<group>"; };
 		CD78EA091BB9E8F6003289B5 /* BKEntityRewards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityRewards.h; path = Entities/BKEntityRewards.h; sourceTree = "<group>"; };
 		CD78EA0A1BB9E8F6003289B5 /* BKEntityRewards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityRewards.m; path = Entities/BKEntityRewards.m; sourceTree = "<group>"; };
 		CD78EA0F1BB9F097003289B5 /* BKEntityStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityStorage.h; path = Entities/BKEntityStorage.h; sourceTree = "<group>"; };
 		CD78EA101BB9F097003289B5 /* BKEntityStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityStorage.m; path = Entities/BKEntityStorage.m; sourceTree = "<group>"; };
+		CE1DABCEA08C3A78C92193BD /* libPods-BadgeKeeper.Sample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BadgeKeeper.Sample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3337861B5ABC1800C637DE /* BadgeKeeper.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadgeKeeper.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF33378A1B5ABC1800C637DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF33378B1B5ABC1800C637DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,12 +83,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF36A872DB6ADA4C97B712D /* libPods-BadgeKeeper.Sample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2164DA331A95637AA50B022 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03B3267B0F25927496E778AE /* Pods-BadgeKeeper.Sample.debug.xcconfig */,
+				A2913841EEAED56730607715 /* Pods-BadgeKeeper.Sample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B95582872D848A99B2C22F67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE1DABCEA08C3A78C92193BD /* libPods-BadgeKeeper.Sample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CD78E9FF1BB9E72D003289B5 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +114,6 @@
 				CD78EA061BB9E8F6003289B5 /* BKEntityAchievements.m */,
 				CD78EA091BB9E8F6003289B5 /* BKEntityRewards.h */,
 				CD78EA0A1BB9E8F6003289B5 /* BKEntityRewards.m */,
-				CD78EA001BB9E77A003289B5 /* BadgeKeeper.xcdatamodeld */,
 				CD78EA0F1BB9F097003289B5 /* BKEntityStorage.h */,
 				CD78EA101BB9F097003289B5 /* BKEntityStorage.m */,
 			);
@@ -106,6 +125,8 @@
 			children = (
 				CF3337881B5ABC1800C637DE /* BadgeKeeper.Sample */,
 				CF3337871B5ABC1800C637DE /* Products */,
+				A2164DA331A95637AA50B022 /* Pods */,
+				B95582872D848A99B2C22F67 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,9 +253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF3337A91B5ABC1800C637DE /* Build configuration list for PBXNativeTarget "BadgeKeeper.Sample" */;
 			buildPhases = (
+				E23C764356F2D3DE8D2EFBF3 /* Check Pods Manifest.lock */,
 				CF3337821B5ABC1800C637DE /* Sources */,
 				CF3337831B5ABC1800C637DE /* Frameworks */,
 				CF3337841B5ABC1800C637DE /* Resources */,
+				1C34938C1B95AEC42F3E6803 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,13 +312,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C34938C1B95AEC42F3E6803 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BadgeKeeper.Sample/Pods-BadgeKeeper.Sample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E23C764356F2D3DE8D2EFBF3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CF3337821B5ABC1800C637DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CF33386C1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m in Sources */,
-				CD78EA021BB9E77A003289B5 /* BadgeKeeper.xcdatamodeld in Sources */,
 				CF3338621B5B25D200C637DE /* BKUnlockedUserAchievementList.m in Sources */,
 				CF33383B1B5B03E600C637DE /* BKKeyValuePair.m in Sources */,
 				CF3338691B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m in Sources */,
@@ -403,6 +458,7 @@
 		};
 		CF3337AA1B5ABC1800C637DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03B3267B0F25927496E778AE /* Pods-BadgeKeeper.Sample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -415,6 +471,7 @@
 		};
 		CF3337AB1B5ABC1800C637DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2913841EEAED56730607715 /* Pods-BadgeKeeper.Sample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -447,20 +504,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CD78EA001BB9E77A003289B5 /* BadgeKeeper.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CD78EA011BB9E77A003289B5 /* BadgeKeeper.xcdatamodel */,
-			);
-			currentVersion = CD78EA011BB9E77A003289B5 /* BadgeKeeper.xcdatamodel */;
-			name = BadgeKeeper.xcdatamodeld;
-			path = Entities/BadgeKeeper.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CF33377E1B5ABC1800C637DE /* Project object */;
 }

@@ -73,9 +73,6 @@
                                 selector:@selector(clientDidReceiveError:)
                                 name:kBKNotificationFailedIncrementPreparedValues
                                 object:nil];
-    
-    NSArray *rewards = [NSArray new];
-    [[BadgeKeeper instance] readRewardValuesForName:@"gold" withValues:&rewards];
 }
 
 - (void)dealloc {
@@ -151,6 +148,12 @@
         [self.responseTextView setText:text];
 
         [self setLoading:NO];
+        
+        NSArray *rewards = [NSArray new];
+        [[BadgeKeeper instance] readRewardValuesForName:@"gold" withValues:&rewards];
+        for (BKEntityRewards *reward in rewards) {
+            NSLog(@"Reward: %@, Value: %f", reward.name, reward.value);
+        }
     });
 }
 

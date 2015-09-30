@@ -9,8 +9,4 @@
 #import "BKEntityRewards.h"
 
 @implementation BKEntityRewards
-
-@dynamic name;
-@dynamic value;
-
 @end

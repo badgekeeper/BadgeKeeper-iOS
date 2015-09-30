@@ -9,9 +9,4 @@
 #import "BKEntityAchievements.h"
 
 @implementation BKEntityAchievements
-
-@dynamic name;
-@dynamic desc;
-@dynamic icon;
-
 @end

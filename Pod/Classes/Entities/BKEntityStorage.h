@@ -10,7 +10,7 @@
 
 @interface BKEntityStorage : NSObject
 
-- (BOOL)saveRewardValueForName:(NSString *)name withValue:(double)value;
-- (NSArray *)readRewardValuesForName:(NSString *)name;
+- (void)saveRewardValueForName:(NSString *)name withValue:(double)value forUser:(NSString *)user;
+- (NSArray *)readRewardValuesForName:(NSString *)name forUser:(NSString *)user;
 
 @end

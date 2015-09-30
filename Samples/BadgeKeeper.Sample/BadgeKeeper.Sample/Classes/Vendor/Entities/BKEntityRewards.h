@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <Realm/Realm.h>
 
-@interface BKEntityRewards : NSManagedObject
+@interface BKEntityRewards : RLMObject
 
-@property (nonnull, nonatomic, retain) NSString *name;
-@property (nonnull, nonatomic, retain) NSNumber *value;
+@property NSString *name;
+@property NSString *user;
+@property double value;
 
 @end

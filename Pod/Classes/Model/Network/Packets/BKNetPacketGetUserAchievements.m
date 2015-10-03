@@ -30,9 +30,7 @@
 
 - (void)parseJSON:(id)json {    
     NSMutableArray *result = [NSMutableArray new];
-    
-    NSArray *list = json;
-    for (NSDictionary *item in list) {
+    for (NSDictionary *item in json[@"Result"]) {
         [result addObject:[[BKUserAchievement alloc] initWithJSON:item]];
     }
     _achievements = result;

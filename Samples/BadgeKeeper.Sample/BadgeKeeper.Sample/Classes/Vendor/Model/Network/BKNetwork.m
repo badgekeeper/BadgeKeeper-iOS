@@ -28,8 +28,10 @@ NSString *const baseURL = @"https://api.badgekeeper.net/";
 + (void)sendPacket:(BKNetPacket *)packet
          onSuccess:(BKNetworkCallbackSuccess)success
          onFailure:(BKNetworkCallbackFailure)failure {
+    NSCharacterSet *set = [NSCharacterSet URLPathAllowedCharacterSet];
     NSString *urlString = [[baseURL stringByAppendingString:packet.relativeURL]
-                           stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                           stringByAddingPercentEncodingWithAllowedCharacters:set];
+    
     NSURL *urlAbsolute = [NSURL URLWithString:urlString];
     NSMutableURLRequest *r = [[NSMutableURLRequest alloc] initWithURL:urlAbsolute];
     

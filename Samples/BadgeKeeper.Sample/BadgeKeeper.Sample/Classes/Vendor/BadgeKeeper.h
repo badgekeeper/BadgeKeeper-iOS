@@ -61,7 +61,7 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 @property (copy, nonatomic) NSString *userId;
 
 /// Indicates whether the BadgeKeeper should load icons from the BadgeKeeper service.
-@property (readonly, nonatomic) BOOL shouldLoadIcons;
+@property (nonatomic) BOOL shouldLoadIcons;
 
 
 #pragma mark - Root

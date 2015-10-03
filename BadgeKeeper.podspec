@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BadgeKeeper"
-  s.version          = "0.2.3"
+  s.version          = "0.2.4"
   s.summary          = "BadgeKeeper service lightweight client library."
   s.homepage         = "https://github.com/badgekeeper/BadgeKeeper-iOS"
   s.license          = { :type => "MIT", :file => "LICENSE" }

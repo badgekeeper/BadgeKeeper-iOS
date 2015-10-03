@@ -115,7 +115,9 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     
     [self sendPacket:packet
            onSuccess:^(BKNetPacket *packet) {
-               [self notify:kBKNotificationDidReceiveProjectAchievements responseObject:packet];
+               BKNetPacketGetProjectAchievements *data = (BKNetPacketGetProjectAchievements *)packet;
+               NSArray *result = [self getArrayOfItems:data.achievements];
+               [self notify:kBKNotificationDidReceiveProjectAchievements responseObject:result];
            }
            onFailure:^(NSURLResponse *response, NSError *error) {
                [self notifyError:kBKNotificationFailedReceiveProjectAchievements
@@ -133,7 +135,9 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     
     [self sendPacket:packet
            onSuccess:^(BKNetPacket *packet) {
-               [self notify:kBKNotificationDidReceiveUserAchievements responseObject:packet];
+               BKNetPacketGetUserAchievements *data = (BKNetPacketGetUserAchievements *)packet;
+               NSArray *result = [self getArrayOfItems:data.achievements];
+               [self notify:kBKNotificationDidReceiveUserAchievements responseObject:result];
            }
            onFailure:^(NSURLResponse *response, NSError *error) {
                [self notifyError:kBKNotificationFailedReceiveUserAchievements
@@ -225,8 +229,16 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 - (NSArray *)getUnlockedAchievements:(BKNetPacketSetUserChanges *)packet {
     NSArray *result = [NSArray new];
-    if (packet.achievementsUnlocked && packet.achievementsUnlocked.achievements) {
-        result = packet.achievementsUnlocked.achievements;
+    if (packet.achievementsUnlocked) {
+        result = [self getArrayOfItems:packet.achievementsUnlocked.achievements];
+    }
+    return result;
+}
+
+- (NSArray *)getArrayOfItems:(NSArray *)array {
+    NSArray *result = [NSArray new];
+    if (array && array.count > 0) {
+        result = array;
     }
     return result;
 }

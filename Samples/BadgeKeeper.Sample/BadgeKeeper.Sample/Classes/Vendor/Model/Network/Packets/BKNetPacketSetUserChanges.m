@@ -14,12 +14,13 @@
 
 #pragma mark - Properties
 
-- (NSString *)relativeURL {
-    return [NSString stringWithFormat:@"api/gateway/%@/users/post/%@",
-            self.projectId,
-            self.userId];
+- (NSString *)pathURL {
+    return [NSString stringWithFormat:@"/api/gateway/%@/users/post/%@", self.projectId, self.userId];
 }
 
+- (NSString *)queryURL {
+    return @"";
+}
 
 #pragma mark - BKNetPacket
 

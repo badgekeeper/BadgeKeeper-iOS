@@ -14,11 +14,13 @@
 
 #pragma mark - Properties
 
-- (NSString *)relativeURL {
-    return [NSString stringWithFormat:@"api/gateway/%@/users/get/%@?shouldLoadIcons=%@",
-            self.projectId,
-            self.userId,
-            (self.shouldLoadIcons) ? @"true" : @"false"];
+- (NSString *)pathURL {
+    return [NSString stringWithFormat:@"/api/gateway/%@/users/get/%@", self.projectId, self.userId];
+}
+
+- (NSString *)queryURL {
+    NSString *request = (self.shouldLoadIcons) ? @"true" : @"false";
+    return [NSString stringWithFormat:@"shouldLoadIcons=%@", request];
 }
 
 - (NSString *)HTTPMethod {

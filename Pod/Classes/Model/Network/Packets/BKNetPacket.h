@@ -13,7 +13,8 @@
     
 }
 
-@property (readonly, nonatomic) NSString *relativeURL;
+@property (readonly, nonatomic) NSString *pathURL;
+@property (readonly, nonatomic) NSString *queryURL;
 @property (readonly, nonatomic) NSString *body;
 @property (readonly, nonatomic) NSString *HTTPMethod;
 

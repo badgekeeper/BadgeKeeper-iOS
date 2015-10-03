@@ -12,8 +12,6 @@
 @implementation BKNetwork
 
 static NSURLSession *session = nil;
-NSString *const baseURL = @"https://api.badgekeeper.net/";
-
 
 #pragma mark - Root
 
@@ -28,11 +26,14 @@ NSString *const baseURL = @"https://api.badgekeeper.net/";
 + (void)sendPacket:(BKNetPacket *)packet
          onSuccess:(BKNetworkCallbackSuccess)success
          onFailure:(BKNetworkCallbackFailure)failure {
-    NSCharacterSet *set = [NSCharacterSet URLPathAllowedCharacterSet];
-    NSString *urlString = [[baseURL stringByAppendingString:packet.relativeURL]
-                           stringByAddingPercentEncodingWithAllowedCharacters:set];
     
-    NSURL *urlAbsolute = [NSURL URLWithString:urlString];
+    NSURLComponents *urlComponents = [NSURLComponents new];
+    urlComponents.scheme = @"https";
+    urlComponents.host = @"api.badgekeeper.net";
+    urlComponents.path = [packet pathURL];
+    urlComponents.query = [packet queryURL];
+    
+    NSURL *urlAbsolute = [urlComponents URL];
     NSMutableURLRequest *r = [[NSMutableURLRequest alloc] initWithURL:urlAbsolute];
     
     // setup request

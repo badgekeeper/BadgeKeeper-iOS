@@ -14,10 +14,12 @@
 
 #pragma mark - Properties
 
-- (NSString *)relativeURL {
-    return [NSString stringWithFormat:@"api/gateway/%@/users/increment/%@",
-            self.projectId,
-            self.userId];
+- (NSString *)pathURL {
+    return [NSString stringWithFormat:@"/api/gateway/%@/users/increment/%@", self.projectId, self.userId];
+}
+
+- (NSString *)queryURL {
+    return @"";
 }
 
 @end

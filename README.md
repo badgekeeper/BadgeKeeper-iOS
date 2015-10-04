@@ -15,13 +15,18 @@ BadgeKeeper service lightweight client library.
 
 #### Setup project
 ```
-[BadgeKeeper instance].projectId = "ProjectId from admin panel";
+[BadgeKeeper instance].projectId = <ProjectId from admin panel>;
 ```
 #### Setup user
 ```
-[BadgeKeeper instance].userId = "Your client id";
+[BadgeKeeper instance].userId = <Your client id>;
 ```
-#### Subscribe to completed achievements
+#### Setup loading icons flag
+```
+[BadgeKeeper instance].shouldLoadIcons = YES / NO;
+```
+
+#### Subscribe to response for post and increment requests
 ```
 [[NSNotificationCenter defaultCenter]
                             addObserver:self
@@ -37,21 +42,102 @@ or
                             name:kBKNotificationDidIncrementPreparedValues
                             object:nil];
 ```
-#### Catch notification
+After that you can catch notification results
 ```
 - (void)clientDidSendValues:(NSNotification *)notification {
-    NSArray *unlocked = notification.userInfo[kBKNotificationKeyResponseObject];
+    NSArray *achievements = notification.userInfo[kBKNotificationKeyResponseObject];
 }
 ```
+where achievements is array of BKUnlockedUserAchievement objects.
+
+#### Subscribe to response for getting achievements by project
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidReceiveProjectAchievements:)
+                            name:kBKNotificationDidReceiveProjectAchievements
+                            object:nil];
+```
+and handler method
+```
+- (void)clientDidReceiveProjectAchievements:(NSNotification *)notification {
+    NSArray *achievements = notification.userInfo[kBKNotificationKeyResponseObject];
+}
+```
+where achievements is array of BKProjectAchievement objects.
+
+#### Subscribe to response for getting achievements by user
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidReceiveUserAchievements:)
+                            name:kBKNotificationDidReceiveUserAchievements
+                            object:nil];
+```
+and handler method
+```
+- (void)clientDidReceiveUserAchievements:(NSNotification *)notification {
+    NSArray *achievements = notification.userInfo[kBKNotificationKeyResponseObject];
+}
+```
+where achievements is array of BKUserAchievement objects.
+
 #### Post variable
 ```
-[[BadgeKeeper instance] prepareValue:100 forKey:@"Variable"];
+[[BadgeKeeper instance] preparePostValue:100 forKey:@"Variable"];
 [[BadgeKeeper instance] postPreparedValues];
 ```
 #### Increment variable
 ```
-[[BadgeKeeper instance] prepareValue:20 forKey:@"Variable"];
+[[BadgeKeeper instance] prepareIncrementValue:20 forKey:@"Variable"];
 [[BadgeKeeper instance] incrementPreparedValues];
+```
+
+### Error handling
+To handle error response from Badge Keeper service you should use notifications.
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidReceiveErrorProjectAchievements:)
+                            name:kBKNotificationFailedReceiveProjectAchievements
+                            object:nil];
+```
+to handle error response for getting achievements by project
+
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidReceiveErrorUserAchievements:)
+                            name:kBKNotificationFailedReceiveUserAchievements
+                            object:nil];
+```
+to handle error response for getting achievements by user
+
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidReceiveErrorPostPreparedValues:)
+                            name:kBKNotificationFailedPostPreparedValues
+                            object:nil];
+```
+to handle error response for posting variables
+
+```
+[[NSNotificationCenter defaultCenter]
+                            addObserver:self
+                            selector:@selector(clientDidReceiveErrorIncrementPreparedValues:)
+                            name:kBKNotificationFailedIncrementPreparedValues
+                            object:nil];
+```
+to handle error response for increment variables
+
+Example how to work with error notification
+```
+- (void)clientDidReceiveErrorUserAchievements:(NSNotification *)notification {
+    NSError *error = notification.userInfo[kBKNotificationKeyErrorObject];
+    NSString *text = [NSString stringWithFormat:@"Code: %ld, Message: %@",
+                      (unsigned long)error.code, error.localizedDescription];
+}
 ```
 
 ## License

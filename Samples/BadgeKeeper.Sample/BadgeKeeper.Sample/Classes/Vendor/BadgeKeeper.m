@@ -176,7 +176,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
         BKNetPacketSetUserChanges *packet = [BKNetPacketSetUserChanges new];
         packet.projectId = self.projectId;
         packet.userId = userId;
-        packet.pairs = [pairs mutableCopy];
+        packet.pairs = [pairs copy];
         
         // Clear values
         [postValues removeObjectForKey:userId];
@@ -271,8 +271,19 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
         return NO;
     }
     
-    *values = [result mutableCopy];
+    *values = [result copy];
     return YES;
+}
+
+- (UIImage *)buildImageWithIconString:(NSString *)iconString {
+    UIImage *result = nil;
+    if (iconString && iconString != (id)[NSNull null] && iconString.length > 0) {
+        NSData *data = [[NSData alloc]
+                        initWithBase64EncodedString:iconString
+                        options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        result = [UIImage imageWithData:data];
+    }
+    return result;
 }
 
 #pragma mark - Network

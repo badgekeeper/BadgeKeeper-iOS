@@ -19,8 +19,8 @@
     if (self) {
         _displayName = [json[@"DisplayName"] copy];
         _desc = [json[@"Description"] copy];
-        _iconUnlocked = [json objectForKey:@"UnlockedIcon"];
-        _iconLocked = [json objectForKey:@"LockedIcon"];
+        _iconUnlocked = [json[@"UnlockedIcon"] copy];
+        _iconLocked = [json[@"LockedIcon"] copy];
     }
     return self;
 }

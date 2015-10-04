@@ -27,6 +27,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIImage.h>
 
 #import "BKUserAchievement.h"
 #import "BKUnlockedUserAchievementList.h"
@@ -133,5 +134,14 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
  @return - YES (if parameter successfully taken), NO (otherwise).
  */
 - (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values;
+
+#pragma mark - Extra Functions
+
+/*!
+ Build image with raw icon data.
+ @param iconString - raw icon data from BadgeKeeper service for UnlockedIcon or LockedIcon.
+ @return - image (if data exist), nil (otherwise).
+ */
+- (UIImage *)buildImageWithIconString:(NSString *)iconString;
 
 @end

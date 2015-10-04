@@ -15,7 +15,7 @@
 
 @property (readonly, nonatomic) NSString *displayName;
 @property (readonly, nonatomic) NSString *desc;
-@property (readonly, nonatomic) NSData   *iconUnlocked;
-@property (readonly, nonatomic) NSData   *iconLocked;
+@property (readonly, nonatomic) NSString *iconUnlocked;
+@property (readonly, nonatomic) NSString *iconLocked;
 
 @end

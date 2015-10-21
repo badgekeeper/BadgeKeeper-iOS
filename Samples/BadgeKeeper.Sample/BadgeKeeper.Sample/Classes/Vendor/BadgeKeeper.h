@@ -100,20 +100,20 @@ FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
 
 /*!
  Overloaded postPreparedValues for specific user.
- @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls.
+ @discussion Before sending values must be prepared via <tt>preparePostValue:forKey</tt> method calls.
  @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
 - (void)postPreparedValuesForUserId:(NSString *)userId;
 
 /*!
  Sends all prepared values to server to increment them and validate achievements completion.
- @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
+ @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory.
  */
 - (void)incrementPreparedValues;
 
 /*!
  Overloaded incrementPreparedValues for specific user.
- @discussion Before sending values must be prepared via <tt>prepareValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory. Do not use different prepared values to increment or overwrite. Each portion of variables must be unique request.
+ @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory.
  @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
 - (void)incrementPreparedValuesForUserId:(NSString *)userId;

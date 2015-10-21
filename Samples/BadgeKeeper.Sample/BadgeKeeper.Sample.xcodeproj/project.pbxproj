@@ -9,20 +9,23 @@
 /* Begin PBXBuildFile section */
 		3FF36A872DB6ADA4C97B712D /* libPods-BadgeKeeper.Sample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1DABCEA08C3A78C92193BD /* libPods-BadgeKeeper.Sample.a */; };
 		CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */; settings = {ASSET_TAGS = (); }; };
-		CD78EA0C1BB9E8F6003289B5 /* BKEntityAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA061BB9E8F6003289B5 /* BKEntityAchievements.m */; settings = {ASSET_TAGS = (); }; };
-		CD78EA0E1BB9E8F6003289B5 /* BKEntityRewards.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA0A1BB9E8F6003289B5 /* BKEntityRewards.m */; settings = {ASSET_TAGS = (); }; };
-		CD78EA111BB9F097003289B5 /* BKEntityStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA101BB9F097003289B5 /* BKEntityStorage.m */; settings = {ASSET_TAGS = (); }; };
+		CD78EA0C1BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA061BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.m */; settings = {ASSET_TAGS = (); }; };
+		CD78EA0E1BB9E8F6003289B5 /* BadgeKeeperEntityReward.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA0A1BB9E8F6003289B5 /* BadgeKeeperEntityReward.m */; settings = {ASSET_TAGS = (); }; };
+		CD78EA111BB9F097003289B5 /* BadgeKeeperEntityStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA101BB9F097003289B5 /* BadgeKeeperEntityStorage.m */; settings = {ASSET_TAGS = (); }; };
+		CD7E22931BD82134000BDDBA /* BadgeKeeperProject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7E22921BD82134000BDDBA /* BadgeKeeperProject.m */; settings = {ASSET_TAGS = (); }; };
+		CD7E22961BD82351000BDDBA /* BadgeKeeperReward.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7E22951BD82351000BDDBA /* BadgeKeeperReward.m */; settings = {ASSET_TAGS = (); }; };
+		CD7E22991BD82793000BDDBA /* BadgeKeeperResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7E22981BD82793000BDDBA /* BadgeKeeperResponse.m */; settings = {ASSET_TAGS = (); }; };
+		CD7E229C1BD827C5000BDDBA /* BadgeKeeperResponseError.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7E229B1BD827C5000BDDBA /* BadgeKeeperResponseError.m */; settings = {ASSET_TAGS = (); }; };
 		CF33378C1B5ABC1800C637DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33378B1B5ABC1800C637DE /* main.m */; };
 		CF33378F1B5ABC1800C637DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33378E1B5ABC1800C637DE /* AppDelegate.m */; };
 		CF3337971B5ABC1800C637DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3337961B5ABC1800C637DE /* Images.xcassets */; };
 		CF3337E21B5AFB3800C637DE /* BadgeKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3337E11B5AFB3800C637DE /* BadgeKeeper.m */; };
-		CF33383B1B5B03E600C637DE /* BKKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33383A1B5B03E600C637DE /* BKKeyValuePair.m */; };
+		CF33383B1B5B03E600C637DE /* BadgeKeeperPair.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33383A1B5B03E600C637DE /* BadgeKeeperPair.m */; };
 		CF33383F1B5B069300C637DE /* BKNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33383E1B5B069300C637DE /* BKNetwork.m */; };
-		CF3338511B5B20CC00C637DE /* BKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338501B5B20CC00C637DE /* BKObject.m */; };
-		CF33385F1B5B25D200C637DE /* BKProjectAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338571B5B25D200C637DE /* BKProjectAchievement.m */; };
-		CF3338601B5B25D200C637DE /* BKUserAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338591B5B25D200C637DE /* BKUserAchievement.m */; };
-		CF3338611B5B25D200C637DE /* BKUnlockedUserAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33385C1B5B25D200C637DE /* BKUnlockedUserAchievement.m */; };
-		CF3338621B5B25D200C637DE /* BKUnlockedUserAchievementList.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33385E1B5B25D200C637DE /* BKUnlockedUserAchievementList.m */; };
+		CF3338511B5B20CC00C637DE /* BadgeKeeperObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338501B5B20CC00C637DE /* BadgeKeeperObject.m */; };
+		CF33385F1B5B25D200C637DE /* BadgeKeeperAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338571B5B25D200C637DE /* BadgeKeeperAchievement.m */; };
+		CF3338601B5B25D200C637DE /* BadgeKeeperUserAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338591B5B25D200C637DE /* BadgeKeeperUserAchievement.m */; };
+		CF3338611B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33385C1B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.m */; };
 		CF3338661B5B2D3100C637DE /* BKNetPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338651B5B2D3000C637DE /* BKNetPacket.m */; };
 		CF3338691B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3338681B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m */; };
 		CF33386C1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33386B1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m */; };
@@ -36,12 +39,20 @@
 		A2913841EEAED56730607715 /* Pods-BadgeKeeper.Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadgeKeeper.Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BadgeKeeper.Sample/Pods-BadgeKeeper.Sample.release.xcconfig"; sourceTree = "<group>"; };
 		CD263CB51BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketIncrementUserChanges.h; sourceTree = "<group>"; };
 		CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketIncrementUserChanges.m; sourceTree = "<group>"; };
-		CD78EA051BB9E8F6003289B5 /* BKEntityAchievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityAchievements.h; path = Entities/BKEntityAchievements.h; sourceTree = "<group>"; };
-		CD78EA061BB9E8F6003289B5 /* BKEntityAchievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityAchievements.m; path = Entities/BKEntityAchievements.m; sourceTree = "<group>"; };
-		CD78EA091BB9E8F6003289B5 /* BKEntityRewards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityRewards.h; path = Entities/BKEntityRewards.h; sourceTree = "<group>"; };
-		CD78EA0A1BB9E8F6003289B5 /* BKEntityRewards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityRewards.m; path = Entities/BKEntityRewards.m; sourceTree = "<group>"; };
-		CD78EA0F1BB9F097003289B5 /* BKEntityStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityStorage.h; path = Entities/BKEntityStorage.h; sourceTree = "<group>"; };
-		CD78EA101BB9F097003289B5 /* BKEntityStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityStorage.m; path = Entities/BKEntityStorage.m; sourceTree = "<group>"; };
+		CD78EA051BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperEntityAchievement.h; path = Entities/BadgeKeeperEntityAchievement.h; sourceTree = "<group>"; };
+		CD78EA061BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperEntityAchievement.m; path = Entities/BadgeKeeperEntityAchievement.m; sourceTree = "<group>"; };
+		CD78EA091BB9E8F6003289B5 /* BadgeKeeperEntityReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperEntityReward.h; path = Entities/BadgeKeeperEntityReward.h; sourceTree = "<group>"; };
+		CD78EA0A1BB9E8F6003289B5 /* BadgeKeeperEntityReward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperEntityReward.m; path = Entities/BadgeKeeperEntityReward.m; sourceTree = "<group>"; };
+		CD78EA0F1BB9F097003289B5 /* BadgeKeeperEntityStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperEntityStorage.h; path = Entities/BadgeKeeperEntityStorage.h; sourceTree = "<group>"; };
+		CD78EA101BB9F097003289B5 /* BadgeKeeperEntityStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperEntityStorage.m; path = Entities/BadgeKeeperEntityStorage.m; sourceTree = "<group>"; };
+		CD7E22911BD82134000BDDBA /* BadgeKeeperProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperProject.h; path = Objects/BadgeKeeperProject.h; sourceTree = "<group>"; };
+		CD7E22921BD82134000BDDBA /* BadgeKeeperProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperProject.m; path = Objects/BadgeKeeperProject.m; sourceTree = "<group>"; };
+		CD7E22941BD82351000BDDBA /* BadgeKeeperReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperReward.h; path = Objects/BadgeKeeperReward.h; sourceTree = "<group>"; };
+		CD7E22951BD82351000BDDBA /* BadgeKeeperReward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperReward.m; path = Objects/BadgeKeeperReward.m; sourceTree = "<group>"; };
+		CD7E22971BD82793000BDDBA /* BadgeKeeperResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeKeeperResponse.h; sourceTree = "<group>"; };
+		CD7E22981BD82793000BDDBA /* BadgeKeeperResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeKeeperResponse.m; sourceTree = "<group>"; };
+		CD7E229A1BD827C5000BDDBA /* BadgeKeeperResponseError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeKeeperResponseError.h; sourceTree = "<group>"; };
+		CD7E229B1BD827C5000BDDBA /* BadgeKeeperResponseError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeKeeperResponseError.m; sourceTree = "<group>"; };
 		CE1DABCEA08C3A78C92193BD /* libPods-BadgeKeeper.Sample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BadgeKeeper.Sample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3337861B5ABC1800C637DE /* BadgeKeeper.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadgeKeeper.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF33378A1B5ABC1800C637DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,20 +62,18 @@
 		CF3337961B5ABC1800C637DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CF3337E01B5AFB3800C637DE /* BadgeKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeKeeper.h; sourceTree = "<group>"; };
 		CF3337E11B5AFB3800C637DE /* BadgeKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeKeeper.m; sourceTree = "<group>"; };
-		CF3338391B5B03E600C637DE /* BKKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKKeyValuePair.h; sourceTree = "<group>"; };
-		CF33383A1B5B03E600C637DE /* BKKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKKeyValuePair.m; sourceTree = "<group>"; };
+		CF3338391B5B03E600C637DE /* BadgeKeeperPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperPair.h; path = Model/Objects/BadgeKeeperPair.h; sourceTree = "<group>"; };
+		CF33383A1B5B03E600C637DE /* BadgeKeeperPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperPair.m; path = Model/Objects/BadgeKeeperPair.m; sourceTree = "<group>"; };
 		CF33383D1B5B069300C637DE /* BKNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetwork.h; sourceTree = "<group>"; };
 		CF33383E1B5B069300C637DE /* BKNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetwork.m; sourceTree = "<group>"; };
-		CF33384F1B5B20CC00C637DE /* BKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKObject.h; sourceTree = "<group>"; };
-		CF3338501B5B20CC00C637DE /* BKObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKObject.m; sourceTree = "<group>"; };
-		CF3338561B5B25D200C637DE /* BKProjectAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKProjectAchievement.h; sourceTree = "<group>"; };
-		CF3338571B5B25D200C637DE /* BKProjectAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKProjectAchievement.m; sourceTree = "<group>"; };
-		CF3338581B5B25D200C637DE /* BKUserAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKUserAchievement.h; sourceTree = "<group>"; };
-		CF3338591B5B25D200C637DE /* BKUserAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKUserAchievement.m; sourceTree = "<group>"; };
-		CF33385B1B5B25D200C637DE /* BKUnlockedUserAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKUnlockedUserAchievement.h; sourceTree = "<group>"; };
-		CF33385C1B5B25D200C637DE /* BKUnlockedUserAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKUnlockedUserAchievement.m; sourceTree = "<group>"; };
-		CF33385D1B5B25D200C637DE /* BKUnlockedUserAchievementList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKUnlockedUserAchievementList.h; sourceTree = "<group>"; };
-		CF33385E1B5B25D200C637DE /* BKUnlockedUserAchievementList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKUnlockedUserAchievementList.m; sourceTree = "<group>"; };
+		CF33384F1B5B20CC00C637DE /* BadgeKeeperObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperObject.h; path = Model/Objects/BadgeKeeperObject.h; sourceTree = "<group>"; };
+		CF3338501B5B20CC00C637DE /* BadgeKeeperObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperObject.m; path = Model/Objects/BadgeKeeperObject.m; sourceTree = "<group>"; };
+		CF3338561B5B25D200C637DE /* BadgeKeeperAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperAchievement.h; path = Objects/ProjectAchievement/BadgeKeeperAchievement.h; sourceTree = "<group>"; };
+		CF3338571B5B25D200C637DE /* BadgeKeeperAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperAchievement.m; path = Objects/ProjectAchievement/BadgeKeeperAchievement.m; sourceTree = "<group>"; };
+		CF3338581B5B25D200C637DE /* BadgeKeeperUserAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperUserAchievement.h; path = Objects/ProjectAchievement/BadgeKeeperUserAchievement.h; sourceTree = "<group>"; };
+		CF3338591B5B25D200C637DE /* BadgeKeeperUserAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperUserAchievement.m; path = Objects/ProjectAchievement/BadgeKeeperUserAchievement.m; sourceTree = "<group>"; };
+		CF33385B1B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeperUnlockedAchievement.h; path = Objects/UnlockedUserAchievement/BadgeKeeperUnlockedAchievement.h; sourceTree = "<group>"; };
+		CF33385C1B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeperUnlockedAchievement.m; path = Objects/UnlockedUserAchievement/BadgeKeeperUnlockedAchievement.m; sourceTree = "<group>"; };
 		CF3338641B5B2D3000C637DE /* BKNetPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacket.h; sourceTree = "<group>"; };
 		CF3338651B5B2D3000C637DE /* BKNetPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacket.m; sourceTree = "<group>"; };
 		CF3338671B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketGetProjectAchievements.h; sourceTree = "<group>"; };
@@ -110,14 +119,26 @@
 		CD78E9FF1BB9E72D003289B5 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				CD78EA051BB9E8F6003289B5 /* BKEntityAchievements.h */,
-				CD78EA061BB9E8F6003289B5 /* BKEntityAchievements.m */,
-				CD78EA091BB9E8F6003289B5 /* BKEntityRewards.h */,
-				CD78EA0A1BB9E8F6003289B5 /* BKEntityRewards.m */,
-				CD78EA0F1BB9F097003289B5 /* BKEntityStorage.h */,
-				CD78EA101BB9F097003289B5 /* BKEntityStorage.m */,
+				CD78EA051BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.h */,
+				CD78EA061BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.m */,
+				CD78EA091BB9E8F6003289B5 /* BadgeKeeperEntityReward.h */,
+				CD78EA0A1BB9E8F6003289B5 /* BadgeKeeperEntityReward.m */,
+				CD78EA0F1BB9F097003289B5 /* BadgeKeeperEntityStorage.h */,
+				CD78EA101BB9F097003289B5 /* BadgeKeeperEntityStorage.m */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		CD7E22901BD81DA5000BDDBA /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				CF3338301B5B03B700C637DE /* Models */,
+				CF33384F1B5B20CC00C637DE /* BadgeKeeperObject.h */,
+				CF3338501B5B20CC00C637DE /* BadgeKeeperObject.m */,
+				CF3338391B5B03E600C637DE /* BadgeKeeperPair.h */,
+				CF33383A1B5B03E600C637DE /* BadgeKeeperPair.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		CF33377D1B5ABC1800C637DE = {
@@ -155,8 +176,9 @@
 		CF3337DF1B5AFB2D00C637DE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				CF33383C1B5B068400C637DE /* Network */,
+				CD7E22901BD81DA5000BDDBA /* Objects */,
 				CD78E9FF1BB9E72D003289B5 /* Entities */,
-				CF3338301B5B03B700C637DE /* Model */,
 				CF3337E01B5AFB3800C637DE /* BadgeKeeper.h */,
 				CF3337E11B5AFB3800C637DE /* BadgeKeeper.m */,
 			);
@@ -164,26 +186,22 @@
 			path = Classes/Vendor;
 			sourceTree = "<group>";
 		};
-		CF3338301B5B03B700C637DE /* Model */ = {
+		CF3338301B5B03B700C637DE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CF33383C1B5B068400C637DE /* Network */,
-				CF3338381B5B03DD00C637DE /* Objects */,
+				CD7E22911BD82134000BDDBA /* BadgeKeeperProject.h */,
+				CD7E22921BD82134000BDDBA /* BadgeKeeperProject.m */,
+				CF3338561B5B25D200C637DE /* BadgeKeeperAchievement.h */,
+				CF3338571B5B25D200C637DE /* BadgeKeeperAchievement.m */,
+				CF3338581B5B25D200C637DE /* BadgeKeeperUserAchievement.h */,
+				CF3338591B5B25D200C637DE /* BadgeKeeperUserAchievement.m */,
+				CD7E22941BD82351000BDDBA /* BadgeKeeperReward.h */,
+				CD7E22951BD82351000BDDBA /* BadgeKeeperReward.m */,
+				CF33385B1B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.h */,
+				CF33385C1B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.m */,
 			);
+			name = Models;
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CF3338381B5B03DD00C637DE /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				CF3338551B5B25D200C637DE /* ProjectAchievement */,
-				CF33385A1B5B25D200C637DE /* UnlockedUserAchievement */,
-				CF33384F1B5B20CC00C637DE /* BKObject.h */,
-				CF3338501B5B20CC00C637DE /* BKObject.m */,
-				CF3338391B5B03E600C637DE /* BKKeyValuePair.h */,
-				CF33383A1B5B03E600C637DE /* BKKeyValuePair.m */,
-			);
-			path = Objects;
 			sourceTree = "<group>";
 		};
 		CF33383C1B5B068400C637DE /* Network */ = {
@@ -192,30 +210,13 @@
 				CF3338631B5B2D2600C637DE /* Packets */,
 				CF33383D1B5B069300C637DE /* BKNetwork.h */,
 				CF33383E1B5B069300C637DE /* BKNetwork.m */,
+				CD7E22971BD82793000BDDBA /* BadgeKeeperResponse.h */,
+				CD7E22981BD82793000BDDBA /* BadgeKeeperResponse.m */,
+				CD7E229A1BD827C5000BDDBA /* BadgeKeeperResponseError.h */,
+				CD7E229B1BD827C5000BDDBA /* BadgeKeeperResponseError.m */,
 			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		CF3338551B5B25D200C637DE /* ProjectAchievement */ = {
-			isa = PBXGroup;
-			children = (
-				CF3338561B5B25D200C637DE /* BKProjectAchievement.h */,
-				CF3338571B5B25D200C637DE /* BKProjectAchievement.m */,
-				CF3338581B5B25D200C637DE /* BKUserAchievement.h */,
-				CF3338591B5B25D200C637DE /* BKUserAchievement.m */,
-			);
-			path = ProjectAchievement;
-			sourceTree = "<group>";
-		};
-		CF33385A1B5B25D200C637DE /* UnlockedUserAchievement */ = {
-			isa = PBXGroup;
-			children = (
-				CF33385B1B5B25D200C637DE /* BKUnlockedUserAchievement.h */,
-				CF33385C1B5B25D200C637DE /* BKUnlockedUserAchievement.m */,
-				CF33385D1B5B25D200C637DE /* BKUnlockedUserAchievementList.h */,
-				CF33385E1B5B25D200C637DE /* BKUnlockedUserAchievementList.m */,
-			);
-			path = UnlockedUserAchievement;
+			name = Network;
+			path = Model/Network;
 			sourceTree = "<group>";
 		};
 		CF3338631B5B2D2600C637DE /* Packets */ = {
@@ -351,24 +352,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF33386C1B5B356C00C637DE /* BKNetPacketGetUserAchievements.m in Sources */,
-				CF3338621B5B25D200C637DE /* BKUnlockedUserAchievementList.m in Sources */,
-				CF33383B1B5B03E600C637DE /* BKKeyValuePair.m in Sources */,
+				CD7E22961BD82351000BDDBA /* BadgeKeeperReward.m in Sources */,
+				CF33383B1B5B03E600C637DE /* BadgeKeeperPair.m in Sources */,
 				CF3338691B5B2E8800C637DE /* BKNetPacketGetProjectAchievements.m in Sources */,
 				CF33378F1B5ABC1800C637DE /* AppDelegate.m in Sources */,
-				CF3338601B5B25D200C637DE /* BKUserAchievement.m in Sources */,
+				CF3338601B5B25D200C637DE /* BadgeKeeperUserAchievement.m in Sources */,
 				CF33378C1B5ABC1800C637DE /* main.m in Sources */,
 				CF33383F1B5B069300C637DE /* BKNetwork.m in Sources */,
+				CD7E22991BD82793000BDDBA /* BadgeKeeperResponse.m in Sources */,
 				CF3338661B5B2D3100C637DE /* BKNetPacket.m in Sources */,
-				CF3338611B5B25D200C637DE /* BKUnlockedUserAchievement.m in Sources */,
+				CD7E22931BD82134000BDDBA /* BadgeKeeperProject.m in Sources */,
+				CD7E229C1BD827C5000BDDBA /* BadgeKeeperResponseError.m in Sources */,
+				CF3338611B5B25D200C637DE /* BadgeKeeperUnlockedAchievement.m in Sources */,
 				CFAFC0CF1B6FE26D00FA174B /* BKAchievementViewController.m in Sources */,
-				CD78EA111BB9F097003289B5 /* BKEntityStorage.m in Sources */,
+				CD78EA111BB9F097003289B5 /* BadgeKeeperEntityStorage.m in Sources */,
 				CFCE2FCE1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m in Sources */,
 				CF3337E21B5AFB3800C637DE /* BadgeKeeper.m in Sources */,
-				CF33385F1B5B25D200C637DE /* BKProjectAchievement.m in Sources */,
-				CF3338511B5B20CC00C637DE /* BKObject.m in Sources */,
+				CF33385F1B5B25D200C637DE /* BadgeKeeperAchievement.m in Sources */,
+				CF3338511B5B20CC00C637DE /* BadgeKeeperObject.m in Sources */,
 				CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */,
-				CD78EA0C1BB9E8F6003289B5 /* BKEntityAchievements.m in Sources */,
-				CD78EA0E1BB9E8F6003289B5 /* BKEntityRewards.m in Sources */,
+				CD78EA0C1BB9E8F6003289B5 /* BadgeKeeperEntityAchievement.m in Sources */,
+				CD78EA0E1BB9E8F6003289B5 /* BadgeKeeperEntityReward.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

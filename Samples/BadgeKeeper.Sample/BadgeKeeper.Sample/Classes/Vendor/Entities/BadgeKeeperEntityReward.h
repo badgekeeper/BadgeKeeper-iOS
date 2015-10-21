@@ -1,5 +1,5 @@
 //
-//  BKEntityRewards.h
+//  BadgeKeeperEntityReward.h
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 28.09.15.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
 
-@interface BKEntityRewards : RLMObject
+@interface BadgeKeeperEntityReward : RLMObject
 
 @property NSString *name;
 @property NSString *user;

@@ -1,28 +1,26 @@
 //
-//  BKUnlockedUserAchievement.m
+//  BadgeKeeperUnlockedAchievement.m
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 26.09.15.
 //  Copyright (c) 2015 Alexander Pukhov, BadgeKeeper. All rights reserved.
 //
 
-#import "BKUnlockedUserAchievement.h"
+#import "BadgeKeeperUnlockedAchievement.h"
+#import "BadgeKeeperReward.h"
 
+@implementation BadgeKeeperUnlockedAchievement
 
-@implementation BKUnlockedUserAchievement
-
-
-#pragma mark - BKObject
+#pragma mark - Root
 
 - (instancetype)initWithJSON:(NSDictionary *)json {
     self = [super initWithJSON:json];
     if (self) {
         NSMutableArray *list = [NSMutableArray new];
         for (NSDictionary *item in json[@"Rewards"]) {
-            [list addObject:[[BKKeyValuePair alloc] initWithJSON:item]];
+            [list addObject:[[BadgeKeeperReward alloc] initWithJSON:item]];
         }
         _rewards = list;
-        _achievement = [[BKUserAchievement alloc] initWithJSON:json];
     }
     return self;
 }

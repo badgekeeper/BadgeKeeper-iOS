@@ -1,5 +1,5 @@
 //
-//  BKEntityStorage.h
+//  BadgeKeeperEntityStorage.h
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 29.09.15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BKEntityStorage : NSObject
+@interface BadgeKeeperEntityStorage : NSObject
 
 - (void)saveRewardValueForName:(NSString *)name withValue:(double)value forUser:(NSString *)user;
 - (NSArray *)readRewardValuesForName:(NSString *)name forUser:(NSString *)user;

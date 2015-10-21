@@ -1,5 +1,5 @@
 //
-//  BKObject.h
+//  BadgeKeeperObject.h
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 26.09.15.
@@ -8,12 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface BKObject : NSObject {
+@interface BadgeKeeperObject : NSObject {
     
 }
-
-#pragma mark - Root
 
 - (instancetype)initWithJSON:(NSDictionary *)json;
 

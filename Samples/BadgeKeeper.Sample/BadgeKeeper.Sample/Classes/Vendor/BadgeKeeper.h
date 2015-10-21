@@ -29,26 +29,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
 
-#import "BKUserAchievement.h"
-#import "BKUnlockedUserAchievementList.h"
+#import "BadgeKeeperUserAchievement.h"
+#import "BadgeKeeperUnlockedAchievement.h"
 #import "BKEntityAchievements.h"
 #import "BKEntityRewards.h"
 
-// notifications
-FOUNDATION_EXPORT NSString *const kBKNotificationDidReceiveProjectAchievements;
-FOUNDATION_EXPORT NSString *const kBKNotificationFailedReceiveProjectAchievements;
-FOUNDATION_EXPORT NSString *const kBKNotificationDidReceiveUserAchievements;
-FOUNDATION_EXPORT NSString *const kBKNotificationFailedReceiveUserAchievements;
-FOUNDATION_EXPORT NSString *const kBKNotificationDidPostPreparedValues;
-FOUNDATION_EXPORT NSString *const kBKNotificationFailedPostPreparedValues;
-FOUNDATION_EXPORT NSString *const kBKNotificationDidIncrementPreparedValues;
-FOUNDATION_EXPORT NSString *const kBKNotificationFailedIncrementPreparedValues;
-
-// notifications keys
-FOUNDATION_EXPORT NSString *const kBKNotificationKeyResponseObject;
-FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorResponse;
-FOUNDATION_EXPORT NSString *const kBKNotificationKeyErrorObject;
-
+/// Callbacks
+typedef void (^BadgeKeeperProjectAchievementsCallback)(void);
+typedef void (^BadgeKeeperUserAchievementsCallback)(void);
+typedef void (^BadgeKeeperAchievementsUnlockedCallback)(void);
+typedef void (^BadgeKeeperErrorCallback)(void);
 
 /// Manages BadgeKeeper service environment.
 @interface BadgeKeeper : NSObject {

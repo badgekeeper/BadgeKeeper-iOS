@@ -26,32 +26,25 @@
  
  */
 
+#import <UIKit/UIImage.h>
+
 #import "BadgeKeeper.h"
-#import "BKNetwork.h"
+
+#import "BKPair.h"
+#import "BKApiService.h"
 #import "BKEntityStorage.h"
-#import "BKNetPacketGetProjectAchievements.h"
-#import "BKNetPacketGetUserAchievements.h"
-#import "BKNetPacketSetUserChanges.h"
-#import "BKNetPacketIncrementUserChanges.h"
 
-// notifications
-NSString *const kBKNotificationDidReceiveProjectAchievements = @"kBKNotificationDidReceiveProjectAchievements";
-NSString *const kBKNotificationFailedReceiveProjectAchievements = @"kBKNotificationFailedReceiveProjectAchievements";
-NSString *const kBKNotificationDidReceiveUserAchievements = @"kBKNotificationDidReceiveUserAchievements";
-NSString *const kBKNotificationFailedReceiveUserAchievements = @"kBKNotificationFailedReceiveUserAchievements";
-NSString *const kBKNotificationDidPostPreparedValues = @"kBKNotificationDidPostPreparedValues";
-NSString *const kBKNotificationFailedPostPreparedValues = @"kBKNotificationFailedPostPreparedValues";
-NSString *const kBKNotificationDidIncrementPreparedValues = @"kBKNotificationDidIncrementPreparedValues";
-NSString *const kBKNotificationFailedIncrementPreparedValues = @"kBKNotificationFailedIncrementPreparedValues";
+#import "BKApiRequestGetProjectAchievements.h"
+#import "BKApiRequestGetUserAchievements.h"
+#import "BKApiRequestSetUserChanges.h"
+#import "BKApiRequestIncrementUserChanges.h"
 
-// notifications keys
-NSString *const kBKNotificationKeyResponseObject = @"ResponseObject";
-NSString *const kBKNotificationKeyErrorResponse = @"ErrorResponse";
-NSString *const kBKNotificationKeyErrorObject = @"ErrorObject";
-
-// callbacks
-typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
-
+#import "BKApiResponse.h"
+#import "BKApiResponseError.h"
+#import "BKApiResponseGetProjectAchievements.h"
+#import "BKApiResponseGetUserAchievements.h"
+#import "BKApiResponseSetUserChanges.h"
+#import "BKApiResponseIncrementUserChanges.h"
 
 @interface BadgeKeeper () {
     NSMutableDictionary *postValues;
@@ -61,17 +54,9 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 #pragma mark - Network
 
-- (void)sendPacket:(BKNetPacket *)packet
-         onSuccess:(BadgeKeeperCallbackSendSuccess)success
-         onFailure:(BKNetworkCallbackFailure)failure;
-
-
-#pragma mark - Notifications
-
-- (void)notify:(NSString *)notificationName responseObject:(id)object;
-- (void)notifyError:(NSString *)notificationName
-           response:(NSURLResponse *)response
-              error:(NSError *)error;
+- (void)sendPacket:(BKApiRequest *)request
+       withSuccess:(BKSuccessResponseCallback)success
+        andFailure:(BKFailureResponseCallback)failure;
 
 @end
 
@@ -90,7 +75,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     if (self) {
         postValues = [NSMutableDictionary new];
         incrementValues = [NSMutableDictionary new];
-        storage = [[BKEntityStorage alloc] init];
+        storage = [BKEntityStorage new];
     }
     return self;
 }
@@ -107,43 +92,39 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 #pragma mark - Service
 
-- (void)requestProjectAchievements {
-    BKNetPacketGetProjectAchievements *packet = [BKNetPacketGetProjectAchievements new];
+- (void)getProjectAchievementsWithSuccess:(BKAchievementsResponseCallback)success
+                              withFailure:(BKFailureResponseCallback)failure {
     
-    packet.projectId = self.projectId;
-    packet.shouldLoadIcons = self.shouldLoadIcons;
+    BKApiRequestGetProjectAchievements *request = [BKApiRequestGetProjectAchievements new];
+    request.projectId = self.projectId;
+    request.shouldLoadIcons = self.shouldLoadIcons;
     
-    [self sendPacket:packet
-           onSuccess:^(BKNetPacket *packet) {
-               BKNetPacketGetProjectAchievements *data = (BKNetPacketGetProjectAchievements *)packet;
-               NSArray *result = [self getArrayOfItems:data.achievements];
-               [self notify:kBKNotificationDidReceiveProjectAchievements responseObject:result];
-           }
-           onFailure:^(NSURLResponse *response, NSError *error) {
-               [self notifyError:kBKNotificationFailedReceiveProjectAchievements
-                        response:response
-                           error:error];
-           }];
+    BKSuccessResponseCallback internalCallback = ^(id json) {
+        BKApiResponseGetProjectAchievements *response = [[BKApiResponseGetProjectAchievements alloc] initWithJSON:json];
+        if (success) {
+            success(response.project.achievements);
+        }
+    };
+    
+    [self sendPacket:request withSuccess:internalCallback andFailure:failure];
 }
 
-- (void)requestUserAchievements {
-    BKNetPacketGetUserAchievements *packet = [BKNetPacketGetUserAchievements new];
+- (void)getUserAchievementsWithSuccess:(BKUserAchievementsResponseCallback)success
+                           withFailure:(BKFailureResponseCallback)failure {
+
+    BKApiRequestGetUserAchievements *request = [BKApiRequestGetUserAchievements new];
+    request.projectId = self.projectId;
+    request.userId = self.userId;
+    request.shouldLoadIcons = self.shouldLoadIcons;
     
-    packet.projectId = self.projectId;
-    packet.userId = self.userId;
-    packet.shouldLoadIcons = self.shouldLoadIcons;
+    BKSuccessResponseCallback internalCallback = ^(id json) {
+        BKApiResponseGetUserAchievements *response = [[BKApiResponseGetUserAchievements alloc] initWithJSON:json];
+        if (success) {
+            success(response.achievements);
+        }
+    };
     
-    [self sendPacket:packet
-           onSuccess:^(BKNetPacket *packet) {
-               BKNetPacketGetUserAchievements *data = (BKNetPacketGetUserAchievements *)packet;
-               NSArray *result = [self getArrayOfItems:data.achievements];
-               [self notify:kBKNotificationDidReceiveUserAchievements responseObject:result];
-           }
-           onFailure:^(NSURLResponse *response, NSError *error) {
-               [self notifyError:kBKNotificationFailedReceiveUserAchievements
-                        response:response
-                           error:error];
-           }];
+    [self sendPacket:request withSuccess:internalCallback andFailure:failure];
 }
 
 - (void)preparePostValue:(double)value forKey:(NSString *)key {
@@ -156,7 +137,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 - (void)prepareValue:(double)value forKey:(NSString *)key intoDictionary:(NSMutableDictionary *)dictionary {
     NSString *userId = self.userId;
-    BKKeyValuePair *pair = [[BKKeyValuePair alloc] initWithKey:key value:@(value)];
+    BKPair *pair = [[BKPair alloc] initWithKey:key value:@(value)];
     // Store pair
     if (![dictionary objectForKey:userId]) {
         [dictionary setObject:[NSMutableArray new] forKey:userId];
@@ -164,93 +145,93 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     [dictionary[userId] addObject:pair];
 }
 
-- (void)postPreparedValues {
-    [self postPreparedValuesForUserId:self.userId];
+- (void)postPreparedValuesWithSuccess:(BKAchievementsUnlockedCallback)success
+                          withFailure:(BKFailureResponseCallback)failure {
+    [self postPreparedValuesForUserId:self.userId
+                          withSuccess:success
+                          withFailure:failure];
 }
 
-- (void)postPreparedValuesForUserId:(NSString *)userId {
+- (void)postPreparedValuesForUserId:(NSString *)userId
+                        withSuccess:(BKAchievementsUnlockedCallback)success
+                        withFailure:(BKFailureResponseCallback)failure {
     // Validate values
     NSArray *pairs = [postValues objectForKey:userId];
     
     if (pairs && pairs.count > 0) {
-        BKNetPacketSetUserChanges *packet = [BKNetPacketSetUserChanges new];
-        packet.projectId = self.projectId;
-        packet.userId = userId;
-        packet.pairs = [pairs copy];
+        BKApiRequestSetUserChanges *request = [BKApiRequestSetUserChanges new];
+        request.projectId = self.projectId;
+        request.userId = userId;
+        request.pairs = [pairs copy];
         
-        // Clear values
+        // Clear values (TODO: write to DB, remove after successful response)
         [postValues removeObjectForKey:userId];
         
-        [self sendPacket:packet
-               onSuccess:^(BKNetPacket *packet) {
-                   // remove prepared values
-                   BKNetPacketSetUserChanges *data = (BKNetPacketSetUserChanges *)packet;
-                   NSArray *unlocked = [self getUnlockedAchievements:data];
-                   [self saveRewardsForUnlockedAchievements:data.achievementsUnlocked];
-                   
-                   [self notify:kBKNotificationDidIncrementPreparedValues responseObject:unlocked];
-               }
-               onFailure:^(NSURLResponse *response, NSError *error) {
-                   [self notifyError:kBKNotificationFailedIncrementPreparedValues response:response error:error];
-               }];
+        BKAchievementsUnlockedCallback internallCalback = ^(id json) {
+            BKApiResponseSetUserChanges *response = [[BKApiResponseSetUserChanges alloc] initWithJSON:json];
+            
+            // Save rewards if exist
+            [self saveRewardsForUser:userId withUnlockedAchievements:response.achievements];
+            // Return response
+            if (success) {
+                success(response.achievements);
+            }
+        };
+        
+        [self sendPacket:request withSuccess:internallCalback andFailure:failure];
     }
 }
 
-- (void)incrementPreparedValues {
-    [self incrementPreparedValuesForUserId:self.userId];
+- (void)incrementPreparedValuesWithSuccess:(BKAchievementsUnlockedCallback)success
+                               withFailure:(BKFailureResponseCallback)failure {
+    [self incrementPreparedValuesForUserId:self.userId
+                               withSuccess:success
+                               withFailure:failure];
 }
 
-- (void)incrementPreparedValuesForUserId:(NSString *)userId {
+- (void)incrementPreparedValuesForUserId:(NSString *)userId
+                             withSuccess:(BKAchievementsUnlockedCallback)success
+                             withFailure:(BKFailureResponseCallback)failure {
     // Validate values
     NSArray *pairs = [incrementValues objectForKey:userId];
     
     if (pairs && pairs.count > 0) {
-        BKNetPacketIncrementUserChanges *packet = [BKNetPacketIncrementUserChanges new];
-        packet.projectId = self.projectId;
-        packet.userId = userId;
-        packet.pairs = [incrementValues objectForKey:userId];
-
-        // Clear values
+        BKApiRequestIncrementUserChanges *request = [BKApiRequestIncrementUserChanges new];
+        request.projectId = self.projectId;
+        request.userId = userId;
+        request.pairs = [incrementValues objectForKey:userId];
+        
+        // Clear values (TODO: write to DB, remove after successful response)
         [incrementValues removeObjectForKey:userId];
         
-        [self sendPacket:packet
-               onSuccess:^(BKNetPacket *packet) {
-                   BKNetPacketIncrementUserChanges *data = (BKNetPacketIncrementUserChanges *)packet;
-                   NSArray *unlocked = [self getUnlockedAchievements:data];
-                   [self saveRewardsForUnlockedAchievements:data.achievementsUnlocked];
-                   
-                   [self notify:kBKNotificationDidPostPreparedValues responseObject:unlocked];
-               }
-               onFailure:^(NSURLResponse *response, NSError *error) {
-                   [self notifyError:kBKNotificationFailedPostPreparedValues response:response error:error];
-               }];
+        BKAchievementsUnlockedCallback internallCalback = ^(id json) {
+            BKApiResponseIncrementUserChanges *response = [[BKApiResponseIncrementUserChanges alloc] initWithJSON:json];
+            
+            // Save rewards if exist
+            [self saveRewardsForUser:userId withUnlockedAchievements:response.achievements];
+            // Return response
+            if (success) {
+                success(response.achievements);
+            }
+        };
+        
+        [self sendPacket:request withSuccess:internallCalback andFailure:failure];
     }
 }
 
-- (NSArray *)getUnlockedAchievements:(BKNetPacketSetUserChanges *)packet {
-    NSArray *result = [NSArray new];
-    if (packet.achievementsUnlocked) {
-        result = [self getArrayOfItems:packet.achievementsUnlocked.achievements];
-    }
-    return result;
-}
-
-- (NSArray *)getArrayOfItems:(NSArray *)array {
-    NSArray *result = [NSArray new];
-    if (array && array.count > 0) {
-        result = array;
-    }
-    return result;
-}
-
-- (void)saveRewardsForUnlockedAchievements:(BKUnlockedUserAchievementList *)list {
-    if (list.achievements) {
-        for (BKUnlockedUserAchievement *achievement in list.achievements) {
-            if (achievement.rewards) {
-                for (BKKeyValuePair *reward in achievement.rewards) {
-                    [storage saveRewardValueForName:reward.key
-                                          withValue:reward.value.doubleValue
-                                            forUser:self.userId];
+/*!
+ Save rewards to DB
+ @param userId - specified user which hit achievement
+ @param list - list of BKUnlockedAchievemnt elements
+ */
+- (void)saveRewardsForUser:(NSString *)userId withUnlockedAchievements:(NSArray *)list {
+    if (list != nil && list.count > 0) {
+        for (BKUnlockedAchievement *achievement in list) {
+            if (achievement.rewards != nil && achievement.rewards.count > 0) {
+                for (BKReward *reward in achievement.rewards) {
+                    [storage saveRewardValueForName:reward.name
+                                          withValue:reward.value
+                                            forUser:userId];
                 }
             }
         }
@@ -288,36 +269,21 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 #pragma mark - Network
 
-- (void)sendPacket:(BKNetPacket *)packet
-         onSuccess:(BadgeKeeperCallbackSendSuccess)success
-         onFailure:(BKNetworkCallbackFailure)failure {
-    [BKNetwork sendPacket:packet
-                onSuccess:^(id json, NSURLResponse *response) {
-                    if (success) {
-                        [packet parseJSON:json];
-                        success(packet);
-                    }
-                }
-                onFailure:^(NSURLResponse *response, NSError *error) {
-                    if (failure) {
-                        failure(response, error);
-                    }
-                }];
+- (void)sendPacket:(BKApiRequest *)request
+       withSuccess:(BKSuccessResponseCallback)success
+        andFailure:(BKFailureResponseCallback)failure {
+    
+    [BKApiService sendRequest:request onSuccess:^(id json) {
+        BKApiResponse *response = [[BKApiResponse alloc] initWithJSON:json];
+        if (response.error) {
+            if (failure) {
+                failure(response.error.code, response.error.message);
+            }
+        }
+        else {
+            success(json);
+        }
+    } onFailure:failure];
 }
-
-
-#pragma mark - Notifications
-
-- (void)notify:(NSString *)notificationName responseObject:(id)object {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self
-                                                      userInfo:@{kBKNotificationKeyResponseObject:object}];
-}
-
-- (void)notifyError:(NSString *)notificationName response:(NSURLResponse *)response error:(NSError *)error {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self
-                                                      userInfo:@{kBKNotificationKeyErrorResponse:response,
-                                                                 kBKNotificationKeyErrorObject:error}];
-}
-
 
 @end

@@ -7,14 +7,14 @@
 //
 
 #import "BKEntityStorage.h"
-#import "BKEntityRewards.h"
+#import "BKEntityReward.h"
 
 @implementation BKEntityStorage
 
 #pragma mark - General
 
 - (void)saveRewardValueForName:(NSString *)name withValue:(double)value forUser:(NSString *)user {
-    BKEntityRewards *entity = [BKEntityRewards new];
+    BKEntityReward *entity = [BKEntityReward new];
     entity.name = name;
     entity.user = user;
     entity.value = value;
@@ -28,7 +28,7 @@
 
 - (NSArray *)readRewardValuesForName:(NSString *)name forUser:(NSString *)user {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ AND user == %@", name, user];
-    RLMResults *results = [BKEntityRewards objectsWithPredicate:predicate];
+    RLMResults *results = [BKEntityReward objectsWithPredicate:predicate];
     
     NSMutableArray *array = [NSMutableArray new];
     for (RLMObject *object in results) {

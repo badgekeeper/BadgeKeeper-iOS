@@ -27,18 +27,14 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIImage.h>
 
-#import "BadgeKeeperUserAchievement.h"
-#import "BadgeKeeperUnlockedAchievement.h"
-#import "BKEntityAchievements.h"
-#import "BKEntityRewards.h"
+#import "BKApiService.h"
+//#import "BadgeKeeperUserAchievement.h"
+//#import "BadgeKeeperUnlockedAchievement.h"
+//#import "BadgeKeeperEntityAchievement.h"
+//#import "BadgeKeeperEntityReward.h"
 
-/// Callbacks
-typedef void (^BadgeKeeperProjectAchievementsCallback)(void);
-typedef void (^BadgeKeeperUserAchievementsCallback)(void);
-typedef void (^BadgeKeeperAchievementsUnlockedCallback)(void);
-typedef void (^BadgeKeeperErrorCallback)(void);
+@class UIImage;
 
 /// Manages BadgeKeeper service environment.
 @interface BadgeKeeper : NSObject {
@@ -62,51 +58,53 @@ typedef void (^BadgeKeeperErrorCallback)(void);
 
 #pragma mark - Service
 
-/// Requests all project achievements list.
-- (void)requestProjectAchievements;
+/// Get all project achievements list.
+- (void)getProjectAchievementsWithSuccess:(BKAchievementsResponseCallback)success
+                              withFailure:(BKFailureResponseCallback)failure;
 
-/// Requests all achievements that are unlocked by the specified user ID.
-- (void)requestUserAchievements;
+/// Get all achievements by the specified user Id.
+- (void)getUserAchievementsWithSuccess:(BKUserAchievementsResponseCallback)success
+                           withFailure:(BKFailureResponseCallback)failure;
 
 /*!
  Sets a new value for specified key.
  @param value - New value to set. Old value will be overwritten.
  @param key - Target key to validate achievements.
  */
-- (void)preparePostValue:(double)value forKey:(NSString *)key;
+//- (void)preparePostValue:(double)value forKey:(NSString *)key;
 
 /*!
  Sets a new value for specified key.
  @param value - Increment old value.
  @param key - Target key to validate achievements.
  */
-- (void)prepareIncrementValue:(double)value forKey:(NSString *)key;
+//- (void)prepareIncrementValue:(double)value forKey:(NSString *)key;
 
 /*!
  Sends all prepared values to server to overwrite them and validate achievements completion.
  @discussion Before sending values must be prepared via <tt>preparePostValue:forKey:</tt> method calls.
  */
-- (void)postPreparedValues;
+//- (void)postPreparedValues;
 
 /*!
  Overloaded postPreparedValues for specific user.
  @discussion Before sending values must be prepared via <tt>preparePostValue:forKey</tt> method calls.
  @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
-- (void)postPreparedValuesForUserId:(NSString *)userId;
+//- (void)postPreparedValuesForUserId:(NSString *)userId;
 
 /*!
  Sends all prepared values to server to increment them and validate achievements completion.
  @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory.
  */
-- (void)incrementPreparedValues;
+//- (void)incrementPreparedValues;
 
 /*!
  Overloaded incrementPreparedValues for specific user.
  @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory.
  @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
  */
-- (void)incrementPreparedValuesForUserId:(NSString *)userId;
+//- (void)incrementPreparedValuesForUserId:(NSString *)userId;
 
 /*!
  Try to read reward value from storage.
@@ -114,7 +112,7 @@ typedef void (^BadgeKeeperErrorCallback)(void);
  @param out values - Output array values for <tt>name</tt> parameter.
  @return - YES (if parameter successfully taken), NO (otherwise).
  */
-- (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values;
+//- (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values;
 
 /*!
  Overloaded readRewardValuesForName for specific user.
@@ -123,7 +121,7 @@ typedef void (^BadgeKeeperErrorCallback)(void);
  @param out values - Output array values for <tt>name</tt> parameter.
  @return - YES (if parameter successfully taken), NO (otherwise).
  */
-- (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values;
+//- (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values;
 
 #pragma mark - Extra Functions
 

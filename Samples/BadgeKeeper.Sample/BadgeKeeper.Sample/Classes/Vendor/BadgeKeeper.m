@@ -26,32 +26,28 @@
  
  */
 
+#import <UIKit/UIImage.h>
+
 #import "BadgeKeeper.h"
-#import "BKNetwork.h"
+#import "BKApiService.h"
+#import "BKApiResponse.h"
+#import "BKApiResponseError.h"
 #import "BKEntityStorage.h"
-#import "BKNetPacketGetProjectAchievements.h"
-#import "BKNetPacketGetUserAchievements.h"
-#import "BKNetPacketSetUserChanges.h"
-#import "BKNetPacketIncrementUserChanges.h"
+//#import "BadgeKeeperApiPacket.h"
+//#import "BadgeKeeperApiPacketGetProjectAchievements.h"
+//#import "BKNetPacketGetUserAchievements.h"
+//#import "BKNetPacketSetUserChanges.h"
+//#import "BKNetPacketIncrementUserChanges.h"
+#import "BKApiRequestGetProjectAchievements.h"
+#import "BKApiResponseGetProjectAchievements.h"
 
-// notifications
-NSString *const kBKNotificationDidReceiveProjectAchievements = @"kBKNotificationDidReceiveProjectAchievements";
-NSString *const kBKNotificationFailedReceiveProjectAchievements = @"kBKNotificationFailedReceiveProjectAchievements";
-NSString *const kBKNotificationDidReceiveUserAchievements = @"kBKNotificationDidReceiveUserAchievements";
-NSString *const kBKNotificationFailedReceiveUserAchievements = @"kBKNotificationFailedReceiveUserAchievements";
-NSString *const kBKNotificationDidPostPreparedValues = @"kBKNotificationDidPostPreparedValues";
-NSString *const kBKNotificationFailedPostPreparedValues = @"kBKNotificationFailedPostPreparedValues";
-NSString *const kBKNotificationDidIncrementPreparedValues = @"kBKNotificationDidIncrementPreparedValues";
-NSString *const kBKNotificationFailedIncrementPreparedValues = @"kBKNotificationFailedIncrementPreparedValues";
+#import "BKApiRequestGetUserAchievements.h"
+#import "BKApiResponseGetUserAchievements.h"
 
-// notifications keys
-NSString *const kBKNotificationKeyResponseObject = @"ResponseObject";
-NSString *const kBKNotificationKeyErrorResponse = @"ErrorResponse";
-NSString *const kBKNotificationKeyErrorObject = @"ErrorObject";
+#import "BKProject.h"
 
 // callbacks
-typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
-
+//typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 @interface BadgeKeeper () {
     NSMutableDictionary *postValues;
@@ -61,17 +57,9 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 #pragma mark - Network
 
-- (void)sendPacket:(BKNetPacket *)packet
-         onSuccess:(BadgeKeeperCallbackSendSuccess)success
-         onFailure:(BKNetworkCallbackFailure)failure;
-
-
-#pragma mark - Notifications
-
-- (void)notify:(NSString *)notificationName responseObject:(id)object;
-- (void)notifyError:(NSString *)notificationName
-           response:(NSURLResponse *)response
-              error:(NSError *)error;
+- (void)sendPacket:(BKApiRequest *)request
+       withSuccess:(BKSuccessResponseCallback)success
+        andFailure:(BKFailureResponseCallback)failure;
 
 @end
 
@@ -90,7 +78,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     if (self) {
         postValues = [NSMutableDictionary new];
         incrementValues = [NSMutableDictionary new];
-        storage = [[BKEntityStorage alloc] init];
+        storage = [BKEntityStorage new];
     }
     return self;
 }
@@ -107,45 +95,38 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 #pragma mark - Service
 
-- (void)requestProjectAchievements {
-    BKNetPacketGetProjectAchievements *packet = [BKNetPacketGetProjectAchievements new];
+- (void)getProjectAchievementsWithSuccess:(BKAchievementsResponseCallback)success
+                              withFailure:(BKFailureResponseCallback)failure {
     
-    packet.projectId = self.projectId;
-    packet.shouldLoadIcons = self.shouldLoadIcons;
+    BKApiRequestGetProjectAchievements *request = [BKApiRequestGetProjectAchievements new];
+    request.projectId = self.projectId;
+    request.shouldLoadIcons = self.shouldLoadIcons;
     
-    [self sendPacket:packet
-           onSuccess:^(BKNetPacket *packet) {
-               BKNetPacketGetProjectAchievements *data = (BKNetPacketGetProjectAchievements *)packet;
-               NSArray *result = [self getArrayOfItems:data.achievements];
-               [self notify:kBKNotificationDidReceiveProjectAchievements responseObject:result];
-           }
-           onFailure:^(NSURLResponse *response, NSError *error) {
-               [self notifyError:kBKNotificationFailedReceiveProjectAchievements
-                        response:response
-                           error:error];
-           }];
+    BKSuccessResponseCallback internalCallback = ^(id json) {
+        BKApiResponseGetProjectAchievements *response = [[BKApiResponseGetProjectAchievements alloc] initWithJSON:json];
+        success(response.project.achievements);
+    };
+    
+    [self sendPacket:request withSuccess:internalCallback andFailure:failure];
 }
 
-- (void)requestUserAchievements {
-    BKNetPacketGetUserAchievements *packet = [BKNetPacketGetUserAchievements new];
+- (void)getUserAchievementsWithSuccess:(BKUserAchievementsResponseCallback)success
+                           withFailure:(BKFailureResponseCallback)failure {
+
+    BKApiRequestGetUserAchievements *request = [BKApiRequestGetUserAchievements new];
+    request.projectId = self.projectId;
+    request.userId = self.userId;
+    request.shouldLoadIcons = self.shouldLoadIcons;
     
-    packet.projectId = self.projectId;
-    packet.userId = self.userId;
-    packet.shouldLoadIcons = self.shouldLoadIcons;
+    BKSuccessResponseCallback internalCallback = ^(id json) {
+        BKApiResponseGetUserAchievements *response = [[BKApiResponseGetUserAchievements alloc] initWithJSON:json];
+        success(response.achievements);
+    };
     
-    [self sendPacket:packet
-           onSuccess:^(BKNetPacket *packet) {
-               BKNetPacketGetUserAchievements *data = (BKNetPacketGetUserAchievements *)packet;
-               NSArray *result = [self getArrayOfItems:data.achievements];
-               [self notify:kBKNotificationDidReceiveUserAchievements responseObject:result];
-           }
-           onFailure:^(NSURLResponse *response, NSError *error) {
-               [self notifyError:kBKNotificationFailedReceiveUserAchievements
-                        response:response
-                           error:error];
-           }];
+    [self sendPacket:request withSuccess:internalCallback andFailure:failure];
 }
 
+/*
 - (void)preparePostValue:(double)value forKey:(NSString *)key {
     [self prepareValue:value forKey:key intoDictionary:postValues];
 }
@@ -273,7 +254,7 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
     
     *values = [result copy];
     return YES;
-}
+}*/
 
 - (UIImage *)buildImageWithIconString:(NSString *)iconString {
     UIImage *result = nil;
@@ -288,36 +269,19 @@ typedef void (^BadgeKeeperCallbackSendSuccess)(BKNetPacket *packet);
 
 #pragma mark - Network
 
-- (void)sendPacket:(BKNetPacket *)packet
-         onSuccess:(BadgeKeeperCallbackSendSuccess)success
-         onFailure:(BKNetworkCallbackFailure)failure {
-    [BKNetwork sendPacket:packet
-                onSuccess:^(id json, NSURLResponse *response) {
-                    if (success) {
-                        [packet parseJSON:json];
-                        success(packet);
-                    }
-                }
-                onFailure:^(NSURLResponse *response, NSError *error) {
-                    if (failure) {
-                        failure(response, error);
-                    }
-                }];
+- (void)sendPacket:(BKApiRequest *)request
+       withSuccess:(BKSuccessResponseCallback)success
+        andFailure:(BKFailureResponseCallback)failure {
+    
+    [BKApiService sendRequest:request onSuccess:^(id json) {
+        BKApiResponse *response = [[BKApiResponse alloc] initWithJSON:json];
+        if (response.error) {
+            failure(response.error.code, response.error.message);
+        }
+        else {
+            success(json);
+        }
+    } onFailure:failure];
 }
-
-
-#pragma mark - Notifications
-
-- (void)notify:(NSString *)notificationName responseObject:(id)object {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self
-                                                      userInfo:@{kBKNotificationKeyResponseObject:object}];
-}
-
-- (void)notifyError:(NSString *)notificationName response:(NSURLResponse *)response error:(NSError *)error {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self
-                                                      userInfo:@{kBKNotificationKeyErrorResponse:response,
-                                                                 kBKNotificationKeyErrorObject:error}];
-}
-
 
 @end

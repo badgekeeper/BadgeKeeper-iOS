@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *loginTextField;
 @property (weak, nonatomic) IBOutlet UIButton    *postVariablesButton;
 @property (weak, nonatomic) IBOutlet UIButton    *incrementVariablesButton;
+@property (weak, nonatomic) IBOutlet UIButton    *getUserAchievementsButton;
+@property (weak, nonatomic) IBOutlet UIButton    *getProjectAchievementsButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
 
@@ -61,7 +63,7 @@
         };
         
         BKAchievementsUnlockedCallback success = ^(NSArray *achievements) {
-            [self didReceiveSuccessWithAchievements:achievements];
+            [self didReceiveSuccessUnlockedAchievements:achievements];
         };
         
         [[BadgeKeeper instance] postPreparedValuesWithSuccess:success
@@ -82,7 +84,7 @@
         };
         
         BKAchievementsUnlockedCallback success = ^(NSArray *achievements) {
-            [self didReceiveSuccessWithAchievements:achievements];
+            [self didReceiveSuccessUnlockedAchievements:achievements];
         };
         
         [BadgeKeeper instance].userId = self.loginTextField.text;
@@ -90,6 +92,40 @@
         [[BadgeKeeper instance] incrementPreparedValuesWithSuccess:success
                                                        withFailure:failure];
     }
+}
+
+- (IBAction)getUserAchievementsClick:(UIButton *)sender {
+    if ([self isLoginValid]) {
+        [self setLoading:YES];
+        [self.responseTextView setText:@""];
+        
+        BKFailureResponseCallback failure = ^(int code, NSString *message) {
+            [self didReceiveErrorWithCode:code andMessage:message];
+        };
+        
+        BKUserAchievementsResponseCallback success = ^(NSArray *achievements) {
+            [self didReceiveSuccessUserAchievements:achievements];
+        };
+        
+        [BadgeKeeper instance].userId = self.loginTextField.text;
+        [[BadgeKeeper instance] getUserAchievementsWithSuccess:success withFailure:failure];
+    }
+}
+
+- (IBAction)getProjectAchievementsClick:(UIButton *)sender {
+
+    [self setLoading:YES];
+    [self.responseTextView setText:@""];
+        
+    BKFailureResponseCallback failure = ^(int code, NSString *message) {
+        [self didReceiveErrorWithCode:code andMessage:message];
+    };
+        
+    BKAchievementsResponseCallback success = ^(NSArray *achievements) {
+        [self didReceiveSuccessProjectAchievements:achievements];
+    };
+        
+    [[BadgeKeeper instance] getProjectAchievementsWithSuccess:success withFailure:failure];
 }
 
 - (BOOL)isLoginValid {
@@ -110,45 +146,93 @@
         self.loginTextField.enabled = NO;
         self.postVariablesButton.enabled = NO;
         self.incrementVariablesButton.enabled = NO;
+        self.getProjectAchievementsButton.enabled = NO;
+        self.getUserAchievementsButton.enabled = NO;
         [self.activityIndicatorView startAnimating];
     }
     else {
         self.loginTextField.enabled = YES;
         self.postVariablesButton.enabled = YES;
         self.incrementVariablesButton.enabled = YES;
+        self.getProjectAchievementsButton.enabled = YES;
+        self.getUserAchievementsButton.enabled = YES;
         [self.activityIndicatorView stopAnimating];
     }
 }
 
-- (void)didReceiveSuccessWithAchievements:(NSArray *)achievements {
-    NSString *text = [NSString stringWithFormat:@"Response: "];
+- (void)didReceiveSuccessProjectAchievements:(NSArray *)achievements {
+    NSString *text = [NSString stringWithFormat:@"Achievements: ["];
     
-    if (achievements != nil && achievements.count > 0) {
-        for (BKUnlockedAchievement *achievement in achievements) {
-            NSString *achievementText = [NSString stringWithFormat:@"Title: %@, Description: %@", achievement.displayName, achievement.desc];
-            if (achievement.rewards && achievement.rewards.count > 0) {
-                for (BKReward *reward in achievement.rewards) {
-                    NSString *rewardText = [NSString stringWithFormat:@"Rewards: []"];
-                }
-            }
-            //NSArray *rewards = [NSArray new];
-            //[[BadgeKeeper instance] readRewardValuesForName:@"gold" withValues:&rewards];
-            //for (BKEntityRewards *reward in rewards) {
-            //    NSLog(@"Reward: %@, Value: %f", reward.name, reward.value);
-            //}
+    for (BKAchievement *achievement in achievements) {
+        NSString *atext = [NSString stringWithFormat:@"{ \"Title\": \"%@\", \"Description\": \"%@\" }", achievement.displayName, achievement.desc];
+        
+        if ([achievements lastObject] != achievement) {
+            atext = [atext stringByAppendingString:@", "];
         }
+        text = [text stringByAppendingString:atext];
     }
+    text = [text stringByAppendingString:@"]"];
     
-    [self.responseTextView setText:text];
-    [self setLoading:NO];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.responseTextView setText:text];
+        [self setLoading:NO];
+    });
+}
+
+- (void)didReceiveSuccessUserAchievements:(NSArray *)achievements {
+    NSString *text = [NSString stringWithFormat:@"Achievements: ["];
+    
+    for (BKUserAchievement *achievement in achievements) {
+        NSString *atext = [NSString stringWithFormat:@"{ \"Title\": \"%@\", \"Description\": \"%@\", \"IsUnlocked\":\"%@\" }", achievement.displayName, achievement.desc, (achievement.isUnlocked ? @"YES" : @"NO")];
+        
+        if ([achievements lastObject] != achievement) {
+            atext = [atext stringByAppendingString:@", "];
+        }
+        text = [text stringByAppendingString:atext];
+    }
+    text = [text stringByAppendingString:@"]"];
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.responseTextView setText:text];
+        [self setLoading:NO];
+    });
+}
+
+- (void)didReceiveSuccessUnlockedAchievements:(NSArray *)achievements {
+    NSString *text = [NSString stringWithFormat:@"Achievements: ["];
+    
+    for (BKUnlockedAchievement *achievement in achievements) {
+        NSString *atext = [NSString stringWithFormat:@"{ \"Title\": \"%@\", \"Description\": \"%@\", \"IsUnlocked\":\"%@\", \"Rewards\": [", achievement.displayName, achievement.desc, (achievement.isUnlocked ? @"YES" : @"NO")];
+        
+        for (BKReward *reward in achievement.rewards) {
+            NSString *rtext = [NSString stringWithFormat:@"{ \"Name\": \"%@\", \"Value\": %f }", reward.name, reward.value];
+            if ([achievement.rewards lastObject] != reward) {
+                rtext = [rtext stringByAppendingString:@", "];
+            }
+            atext = [atext stringByAppendingString:rtext];
+        }
+        atext = [atext stringByAppendingString:@"] }"];
+        
+        if ([achievements lastObject] != achievement) {
+            atext = [atext stringByAppendingString:@", "];
+        }
+        text = [text stringByAppendingString:atext];
+    }
+    text = [text stringByAppendingString:@"]"];
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.responseTextView setText:text];
+        [self setLoading:NO];
+    });
 }
 
 - (void)didReceiveErrorWithCode:(int)code andMessage:(NSString *)message {
-    NSString *text = [NSString stringWithFormat:@"Code: %ld, Message: %@",
-                      (unsigned long)code, message];
+    NSString *text = [NSString stringWithFormat:@"Error: [\"Code\": %ld, \"Message\": \"%@\"", (unsigned long)code, message];
     
-    [self.responseTextView setText:text];
-    [self setLoading:NO];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.responseTextView setText:text];
+        [self setLoading:NO];
+    });
 }
 
 - (void)showAlertWithMessage:(NSString *)message {

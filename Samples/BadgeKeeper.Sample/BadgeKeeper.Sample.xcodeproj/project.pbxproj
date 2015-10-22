@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3FF36A872DB6ADA4C97B712D /* libPods-BadgeKeeper.Sample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1DABCEA08C3A78C92193BD /* libPods-BadgeKeeper.Sample.a */; };
-		CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */; settings = {ASSET_TAGS = (); }; };
+		CD043E2D1BD95F1000B62664 /* BKApiResponseSetUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD043E2C1BD95F1000B62664 /* BKApiResponseSetUserChanges.m */; settings = {ASSET_TAGS = (); }; };
+		CD043E301BD95FA900B62664 /* BKApiResponseIncrementUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD043E2F1BD95FA900B62664 /* BKApiResponseIncrementUserChanges.m */; settings = {ASSET_TAGS = (); }; };
+		CD263CB71BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CD263CB61BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.m */; settings = {ASSET_TAGS = (); }; };
 		CD78EA0C1BB9E8F6003289B5 /* BKEntityAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA061BB9E8F6003289B5 /* BKEntityAchievement.m */; settings = {ASSET_TAGS = (); }; };
 		CD78EA0E1BB9E8F6003289B5 /* BKEntityReward.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA0A1BB9E8F6003289B5 /* BKEntityReward.m */; settings = {ASSET_TAGS = (); }; };
 		CD78EA111BB9F097003289B5 /* BKEntityStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78EA101BB9F097003289B5 /* BKEntityStorage.m */; settings = {ASSET_TAGS = (); }; };
@@ -33,14 +35,18 @@
 		CF33386C1B5B356C00C637DE /* BKApiRequestGetUserAchievements.m in Sources */ = {isa = PBXBuildFile; fileRef = CF33386B1B5B356C00C637DE /* BKApiRequestGetUserAchievements.m */; };
 		CFAFC0CF1B6FE26D00FA174B /* BKAchievementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC0CD1B6FE26D00FA174B /* BKAchievementViewController.m */; };
 		CFAFC0D01B6FE26D00FA174B /* BKAchievementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAFC0CE1B6FE26D00FA174B /* BKAchievementViewController.xib */; };
-		CFCE2FCE1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */; };
+		CFCE2FCE1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCE2FCD1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03B3267B0F25927496E778AE /* Pods-BadgeKeeper.Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadgeKeeper.Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BadgeKeeper.Sample/Pods-BadgeKeeper.Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		A2913841EEAED56730607715 /* Pods-BadgeKeeper.Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadgeKeeper.Sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BadgeKeeper.Sample/Pods-BadgeKeeper.Sample.release.xcconfig"; sourceTree = "<group>"; };
-		CD263CB51BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketIncrementUserChanges.h; sourceTree = "<group>"; };
-		CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketIncrementUserChanges.m; sourceTree = "<group>"; };
+		CD043E2B1BD95F1000B62664 /* BKApiResponseSetUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKApiResponseSetUserChanges.h; sourceTree = "<group>"; };
+		CD043E2C1BD95F1000B62664 /* BKApiResponseSetUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKApiResponseSetUserChanges.m; sourceTree = "<group>"; };
+		CD043E2E1BD95FA900B62664 /* BKApiResponseIncrementUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKApiResponseIncrementUserChanges.h; sourceTree = "<group>"; };
+		CD043E2F1BD95FA900B62664 /* BKApiResponseIncrementUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKApiResponseIncrementUserChanges.m; sourceTree = "<group>"; };
+		CD263CB51BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKApiRequestIncrementUserChanges.h; sourceTree = "<group>"; };
+		CD263CB61BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKApiRequestIncrementUserChanges.m; sourceTree = "<group>"; };
 		CD78EA051BB9E8F6003289B5 /* BKEntityAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityAchievement.h; path = Entities/BKEntityAchievement.h; sourceTree = "<group>"; };
 		CD78EA061BB9E8F6003289B5 /* BKEntityAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BKEntityAchievement.m; path = Entities/BKEntityAchievement.m; sourceTree = "<group>"; };
 		CD78EA091BB9E8F6003289B5 /* BKEntityReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityReward.h; path = Entities/BKEntityReward.h; sourceTree = "<group>"; };
@@ -89,8 +95,8 @@
 		CFAFC0CC1B6FE26D00FA174B /* BKAchievementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKAchievementViewController.h; sourceTree = "<group>"; };
 		CFAFC0CD1B6FE26D00FA174B /* BKAchievementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKAchievementViewController.m; sourceTree = "<group>"; };
 		CFAFC0CE1B6FE26D00FA174B /* BKAchievementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKAchievementViewController.xib; sourceTree = "<group>"; };
-		CFCE2FCC1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKNetPacketSetUserChanges.h; sourceTree = "<group>"; };
-		CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKNetPacketSetUserChanges.m; sourceTree = "<group>"; };
+		CFCE2FCC1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKApiRequestSetUserChanges.h; sourceTree = "<group>"; };
+		CFCE2FCD1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKApiRequestSetUserChanges.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,10 @@
 				CDFE240E1BD9542C00506A67 /* BKApiResponseGetProjectAchievements.m */,
 				CDFE24101BD9557600506A67 /* BKApiResponseGetUserAchievements.h */,
 				CDFE24111BD9557600506A67 /* BKApiResponseGetUserAchievements.m */,
+				CD043E2B1BD95F1000B62664 /* BKApiResponseSetUserChanges.h */,
+				CD043E2C1BD95F1000B62664 /* BKApiResponseSetUserChanges.m */,
+				CD043E2E1BD95FA900B62664 /* BKApiResponseIncrementUserChanges.h */,
+				CD043E2F1BD95FA900B62664 /* BKApiResponseIncrementUserChanges.m */,
 			);
 			name = Response;
 			sourceTree = "<group>";
@@ -171,10 +181,10 @@
 				CF3338681B5B2E8800C637DE /* BKApiRequestGetProjectAchievements.m */,
 				CF33386A1B5B356C00C637DE /* BKApiRequestGetUserAchievements.h */,
 				CF33386B1B5B356C00C637DE /* BKApiRequestGetUserAchievements.m */,
-				CFCE2FCC1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.h */,
-				CFCE2FCD1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m */,
-				CD263CB51BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.h */,
-				CD263CB61BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m */,
+				CFCE2FCC1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.h */,
+				CFCE2FCD1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.m */,
+				CD263CB51BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.h */,
+				CD263CB61BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.m */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -378,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF33386C1B5B356C00C637DE /* BKApiRequestGetUserAchievements.m in Sources */,
+				CD043E301BD95FA900B62664 /* BKApiResponseIncrementUserChanges.m in Sources */,
 				CD7E22961BD82351000BDDBA /* BKReward.m in Sources */,
 				CF33383B1B5B03E600C637DE /* BKPair.m in Sources */,
 				CF3338691B5B2E8800C637DE /* BKApiRequestGetProjectAchievements.m in Sources */,
@@ -393,11 +404,12 @@
 				CF3338611B5B25D200C637DE /* BKUnlockedAchievement.m in Sources */,
 				CFAFC0CF1B6FE26D00FA174B /* BKAchievementViewController.m in Sources */,
 				CD78EA111BB9F097003289B5 /* BKEntityStorage.m in Sources */,
-				CFCE2FCE1B628EB300D4C0B8 /* BKNetPacketSetUserChanges.m in Sources */,
+				CD043E2D1BD95F1000B62664 /* BKApiResponseSetUserChanges.m in Sources */,
+				CFCE2FCE1B628EB300D4C0B8 /* BKApiRequestSetUserChanges.m in Sources */,
 				CF3337E21B5AFB3800C637DE /* BadgeKeeper.m in Sources */,
 				CF33385F1B5B25D200C637DE /* BKAchievement.m in Sources */,
 				CF3338511B5B20CC00C637DE /* BKObject.m in Sources */,
-				CD263CB71BB70EFA00B379DF /* BKNetPacketIncrementUserChanges.m in Sources */,
+				CD263CB71BB70EFA00B379DF /* BKApiRequestIncrementUserChanges.m in Sources */,
 				CD78EA0C1BB9E8F6003289B5 /* BKEntityAchievement.m in Sources */,
 				CDFE24121BD9557600506A67 /* BKApiResponseGetUserAchievements.m in Sources */,
 				CD78EA0E1BB9E8F6003289B5 /* BKEntityReward.m in Sources */,

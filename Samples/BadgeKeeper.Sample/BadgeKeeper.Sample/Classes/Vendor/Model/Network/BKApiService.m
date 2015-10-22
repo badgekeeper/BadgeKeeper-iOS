@@ -56,7 +56,9 @@ static const int PARSING_JSON_ERROR    = -2;
     
     id handler = ^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            failure(INTERNAL_SERVER_ERROR, error.localizedDescription);
+            if (failure) {
+                failure(INTERNAL_SERVER_ERROR, error.localizedDescription);
+            }
         }
         else {
             NSError *jsonError = nil;
@@ -65,7 +67,9 @@ static const int PARSING_JSON_ERROR    = -2;
                                   options:NSJSONReadingAllowFragments
                                   error:&jsonError];
             if (jsonError) {
-                failure(PARSING_JSON_ERROR, jsonError.localizedDescription);
+                if (failure) {
+                    failure(PARSING_JSON_ERROR, jsonError.localizedDescription);
+                }
             }
             else {
                 success(json);

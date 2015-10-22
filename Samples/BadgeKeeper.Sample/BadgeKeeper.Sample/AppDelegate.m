@@ -26,9 +26,8 @@
     [BadgeKeeper instance].projectId = @"a93a3a6d-d5f3-4b5c-b153-538063af6121";
     
     // display simple view controller
-    BKAchievementViewController *controller = [[BKAchievementViewController alloc]
-                                               initWithNibName:@"BKAchievementViewController"
-                                               bundle:[NSBundle mainBundle]];
+    BKAchievementViewController *controller = [[BKAchievementViewController alloc] initWithNibName:@"BKAchievementViewController" bundle:[NSBundle mainBundle]];
+
     // init window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = controller;

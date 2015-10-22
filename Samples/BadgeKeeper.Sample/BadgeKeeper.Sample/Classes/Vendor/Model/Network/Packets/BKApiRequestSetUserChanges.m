@@ -1,16 +1,15 @@
 //
-//  BKNetPacketSetUserChanges.m
+//  BKApiRequestSetUserChanges.m
 //  BadgeKeeper.Sample
 //
 //  Created by Alexander Pukhov on 26.09.15.
 //  Copyright (c) 2015 Alexander Pukhov, BadgeKeeper. All rights reserved.
 //
 
-#import "BKNetPacketSetUserChanges.h"
+#import "BKApiRequestSetUserChanges.h"
+#import "BKPair.h"
 
-
-@implementation BKNetPacketSetUserChanges
-
+@implementation BKApiRequestSetUserChanges
 
 #pragma mark - Properties
 
@@ -26,19 +25,16 @@
 
 - (NSString *)body {
     NSMutableString *body = [[NSMutableString alloc] initWithString:@"["];
-    
-    for (BKKeyValuePair *pair in self.pairs) {
-        [body appendString:pair.description];
+    for (BKPair *pair in self.pairs) {
+        NSString *node = [NSString stringWithFormat:@"{\"Key\":\"%@\", \"Value\":%@}",
+                          pair.key, pair.value];
+        [body appendString:node];
         if ([self.pairs lastObject] != pair) {
             [body appendString:@","];
         }
     }
     [body appendString:@"]"];
     return body;
-}
-
-- (void)parseJSON:(id)json {
-    _achievementsUnlocked = [[BKUnlockedUserAchievementList alloc] initWithJSON:json];
 }
 
 @end

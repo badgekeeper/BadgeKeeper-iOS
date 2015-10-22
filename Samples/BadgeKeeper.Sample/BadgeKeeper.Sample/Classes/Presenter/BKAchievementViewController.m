@@ -19,60 +19,23 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
 
-
 #pragma mark - Actions
-
 - (IBAction)postButtonClick:(UIButton *)sender;
 - (IBAction)incrementButtonClick:(UIButton *)sender;
 
-
 #pragma mark - Utils
-
 - (void)setLoading:(BOOL)isLoading;
-
-
-#pragma mark - Observing BadgeKeeper
-
-- (void)clientDidSendValues:(NSNotification *)notification;
 
 @end
 
 
 @implementation BKAchievementViewController
 
-
 #pragma mark - Root
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = @"BadgeKeeper Sample";
-    
-    // subscribe post
-    [[NSNotificationCenter defaultCenter]
-                                addObserver:self
-                                selector:@selector(clientDidSendValues:)
-                                name:kBKNotificationDidPostPreparedValues
-                                object:nil];
-    
-    [[NSNotificationCenter defaultCenter]
-                                addObserver:self
-                                selector:@selector(clientDidReceiveError:)
-                                name:kBKNotificationFailedPostPreparedValues
-                                object:nil];
-    
-    // subscribe increment
-    [[NSNotificationCenter defaultCenter]
-                                addObserver:self
-                                selector:@selector(clientDidSendValues:)
-                                name:kBKNotificationDidIncrementPreparedValues
-                                object:nil];
-    
-    [[NSNotificationCenter defaultCenter]
-                                addObserver:self
-                                selector:@selector(clientDidReceiveError:)
-                                name:kBKNotificationFailedIncrementPreparedValues
-                                object:nil];
 }
 
 - (void)dealloc {
@@ -92,7 +55,17 @@
         
         [BadgeKeeper instance].userId = self.loginTextField.text;
         [[BadgeKeeper instance] preparePostValue:posts forKey:@"x"];
-        [[BadgeKeeper instance] postPreparedValues];
+        
+        BKFailureResponseCallback failure = ^(int code, NSString *message) {
+            [self didReceiveErrorWithCode:code andMessage:message];
+        };
+        
+        BKAchievementsUnlockedCallback success = ^(NSArray *achievements) {
+            [self didReceiveSuccessWithAchievements:achievements];
+        };
+        
+        [[BadgeKeeper instance] postPreparedValuesWithSuccess:success
+                                                  withFailure:failure];
     }
 }
 
@@ -104,9 +77,18 @@
         static NSInteger increments = 0;
         increments++;
         
+        BKFailureResponseCallback failure = ^(int code, NSString *message) {
+            [self didReceiveErrorWithCode:code andMessage:message];
+        };
+        
+        BKAchievementsUnlockedCallback success = ^(NSArray *achievements) {
+            [self didReceiveSuccessWithAchievements:achievements];
+        };
+        
         [BadgeKeeper instance].userId = self.loginTextField.text;
         [[BadgeKeeper instance] prepareIncrementValue:increments forKey:@"x"];
-        [[BadgeKeeper instance] incrementPreparedValues];
+        [[BadgeKeeper instance] incrementPreparedValuesWithSuccess:success
+                                                       withFailure:failure];
     }
 }
 
@@ -138,34 +120,35 @@
     }
 }
 
-
-#pragma mark - Observing BadgeKeeper
-
-- (void)clientDidSendValues:(NSNotification *)notification {
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        NSArray *value = notification.userInfo[kBKNotificationKeyResponseObject];
-        NSString *text = [NSString stringWithFormat:@"Response: %@", [value componentsJoinedByString:@", "]];
-        [self.responseTextView setText:text];
-
-        [self setLoading:NO];
-        
-        NSArray *rewards = [NSArray new];
-        [[BadgeKeeper instance] readRewardValuesForName:@"gold" withValues:&rewards];
-        for (BKEntityRewards *reward in rewards) {
-            NSLog(@"Reward: %@, Value: %f", reward.name, reward.value);
+- (void)didReceiveSuccessWithAchievements:(NSArray *)achievements {
+    NSString *text = [NSString stringWithFormat:@"Response: "];
+    
+    if (achievements != nil && achievements.count > 0) {
+        for (BKUnlockedAchievement *achievement in achievements) {
+            NSString *achievementText = [NSString stringWithFormat:@"Title: %@, Description: %@", achievement.displayName, achievement.desc];
+            if (achievement.rewards && achievement.rewards.count > 0) {
+                for (BKReward *reward in achievement.rewards) {
+                    NSString *rewardText = [NSString stringWithFormat:@"Rewards: []"];
+                }
+            }
+            //NSArray *rewards = [NSArray new];
+            //[[BadgeKeeper instance] readRewardValuesForName:@"gold" withValues:&rewards];
+            //for (BKEntityRewards *reward in rewards) {
+            //    NSLog(@"Reward: %@, Value: %f", reward.name, reward.value);
+            //}
         }
-    });
+    }
+    
+    [self.responseTextView setText:text];
+    [self setLoading:NO];
 }
 
-- (void)clientDidReceiveError:(NSNotification *)notification {
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        NSError *error = notification.userInfo[kBKNotificationKeyErrorObject];
-        NSString *text = [NSString stringWithFormat:@"Code: %ld, Message: %@",
-                          (unsigned long)error.code, error.localizedDescription];
-        [self.responseTextView setText:text];
-        
-        [self setLoading:NO];
-    });
+- (void)didReceiveErrorWithCode:(int)code andMessage:(NSString *)message {
+    NSString *text = [NSString stringWithFormat:@"Code: %ld, Message: %@",
+                      (unsigned long)code, message];
+    
+    [self.responseTextView setText:text];
+    [self setLoading:NO];
 }
 
 - (void)showAlertWithMessage:(NSString *)message {

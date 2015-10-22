@@ -29,12 +29,23 @@
 #import <Foundation/Foundation.h>
 
 #import "BKApiService.h"
-//#import "BadgeKeeperUserAchievement.h"
-//#import "BadgeKeeperUnlockedAchievement.h"
-//#import "BadgeKeeperEntityAchievement.h"
-//#import "BadgeKeeperEntityReward.h"
+
+#import "BKProject.h"
+#import "BKAchievement.h"
+#import "BKUserAchievement.h"
+#import "BKUnlockedAchievement.h"
+#import "BKReward.h"
 
 @class UIImage;
+
+#pragma mark - Callbacks
+
+// Returns array of BKAchievement elements
+typedef void (^BKAchievementsResponseCallback)(NSArray *achievements);
+// Returns array of BKUserAchievement elements
+typedef void (^BKUserAchievementsResponseCallback)(NSArray *achievements);
+// Returns array of BKUnlockedAchievement elements
+typedef void (^BKAchievementsUnlockedCallback)(NSArray *achievements);
 
 /// Manages BadgeKeeper service environment.
 @interface BadgeKeeper : NSObject {
@@ -58,11 +69,19 @@
 
 #pragma mark - Service
 
-/// Get all project achievements list.
+/*!
+ Get all project achievements list.
+ @param success - Successful callback function
+ @param failure - Failure callback function
+ */
 - (void)getProjectAchievementsWithSuccess:(BKAchievementsResponseCallback)success
                               withFailure:(BKFailureResponseCallback)failure;
 
-/// Get all achievements by the specified user Id.
+/*!
+ Get all achievements by the specified user Id.
+ @param success - Successful callback function
+ @param failure - Failure callback function
+ */
 - (void)getUserAchievementsWithSuccess:(BKUserAchievementsResponseCallback)success
                            withFailure:(BKFailureResponseCallback)failure;
 
@@ -71,40 +90,54 @@
  @param value - New value to set. Old value will be overwritten.
  @param key - Target key to validate achievements.
  */
-//- (void)preparePostValue:(double)value forKey:(NSString *)key;
+- (void)preparePostValue:(double)value forKey:(NSString *)key;
 
 /*!
  Sets a new value for specified key.
  @param value - Increment old value.
  @param key - Target key to validate achievements.
  */
-//- (void)prepareIncrementValue:(double)value forKey:(NSString *)key;
+- (void)prepareIncrementValue:(double)value forKey:(NSString *)key;
 
 /*!
  Sends all prepared values to server to overwrite them and validate achievements completion.
  @discussion Before sending values must be prepared via <tt>preparePostValue:forKey:</tt> method calls.
+ @param success - Successful callback function
+ @param failure - Failure callback function
  */
-//- (void)postPreparedValues;
+- (void)postPreparedValuesWithSuccess:(BKAchievementsUnlockedCallback)success
+                          withFailure:(BKFailureResponseCallback)failure;
 
 /*!
  Overloaded postPreparedValues for specific user.
  @discussion Before sending values must be prepared via <tt>preparePostValue:forKey</tt> method calls.
  @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
+ @param success - Successful callback function
+ @param failure - Failure callback function
  */
-//- (void)postPreparedValuesForUserId:(NSString *)userId;
+- (void)postPreparedValuesForUserId:(NSString *)userId
+                        withSuccess:(BKAchievementsUnlockedCallback)success
+                        withFailure:(BKFailureResponseCallback)failure;
 
 /*!
  Sends all prepared values to server to increment them and validate achievements completion.
  @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory.
+ @param success - Successful callback function
+ @param failure - Failure callback function
  */
-//- (void)incrementPreparedValues;
+- (void)incrementPreparedValuesWithSuccess:(BKAchievementsUnlockedCallback)success
+                               withFailure:(BKFailureResponseCallback)failure;
 
 /*!
  Overloaded incrementPreparedValues for specific user.
  @discussion Before sending values must be prepared via <tt>prepareIncrementValue:forKey:</tt> method calls. After successful sending all prepared values will be removed from memory.
  @param userId - User ID which prepared values should be sent. If set to <tt>nil</tt> then current active user ID will be used.
+ @param success - Successful callback function
+ @param failure - Failure callback function
  */
-//- (void)incrementPreparedValuesForUserId:(NSString *)userId;
+- (void)incrementPreparedValuesForUserId:(NSString *)userId
+                             withSuccess:(BKAchievementsUnlockedCallback)success
+                             withFailure:(BKFailureResponseCallback)failure;
 
 /*!
  Try to read reward value from storage.
@@ -112,7 +145,7 @@
  @param out values - Output array values for <tt>name</tt> parameter.
  @return - YES (if parameter successfully taken), NO (otherwise).
  */
-//- (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values;
+- (BOOL)readRewardValuesForName:(NSString *)name withValues:(NSArray **)values;
 
 /*!
  Overloaded readRewardValuesForName for specific user.
@@ -121,7 +154,7 @@
  @param out values - Output array values for <tt>name</tt> parameter.
  @return - YES (if parameter successfully taken), NO (otherwise).
  */
-//- (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values;
+- (BOOL)readRewardValuesForName:(NSString *)name forUserId:(NSString *)userId withValues:(NSArray **)values;
 
 #pragma mark - Extra Functions
 

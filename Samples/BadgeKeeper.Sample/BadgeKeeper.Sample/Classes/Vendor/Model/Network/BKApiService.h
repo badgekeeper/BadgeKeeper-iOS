@@ -10,13 +10,9 @@
 
 #import "BKApiRequest.h"
 
-/// Callbacks
-typedef void (^BKAchievementsResponseCallback)(NSArray *achievements);
-typedef void (^BKUserAchievementsResponseCallback)(NSArray *achievements);
-//typedef void (^BadgeKeeperAchievementsUnlockedCallback)(NSArray *achievements);
-
-typedef void (^BKFailureResponseCallback)(int code, NSString *message);
+/// Internal callbacks
 typedef void (^BKSuccessResponseCallback)(id json);
+typedef void (^BKFailureResponseCallback)(int code, NSString *message);
 
 @interface BKApiService : NSObject {
     

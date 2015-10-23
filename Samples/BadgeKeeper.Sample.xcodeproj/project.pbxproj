@@ -45,7 +45,6 @@
 		CD5A968E1BD9BBC8008881D7 /* BKAchievementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKAchievementViewController.h; sourceTree = "<group>"; };
 		CD5A968F1BD9BBC9008881D7 /* BKAchievementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKAchievementViewController.m; sourceTree = "<group>"; };
 		CD5A96901BD9BBC9008881D7 /* BKAchievementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKAchievementViewController.xib; sourceTree = "<group>"; };
-		CD5A969D1BD9BE87008881D7 /* BadgeKeeper */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BadgeKeeper; path = /Users/siquell/git/badgekeeper.ios/BadgeKeeper; sourceTree = "<absolute>"; };
 		CD5A96A31BD9BF63008881D7 /* BadgeKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeKeeper.h; path = ../../BadgeKeeper/BadgeKeeper.h; sourceTree = "<group>"; };
 		CD5A96A41BD9BF63008881D7 /* BadgeKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeKeeper.m; path = ../../BadgeKeeper/BadgeKeeper.m; sourceTree = "<group>"; };
 		CD5A96A71BD9BF85008881D7 /* BKEntityAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKEntityAchievement.h; path = ../../BadgeKeeper/Entities/BKEntityAchievement.h; sourceTree = "<group>"; };

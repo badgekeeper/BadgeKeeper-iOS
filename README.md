@@ -2,9 +2,11 @@
 
 Badge Keeper iOS library will help add achievement system to your app easily.
 
+[![Build Status](https://travis-ci.org/badgekeeper/BadgeKeeper-iOS.svg?branch=master)](https://travis-ci.org/badgekeeper/BadgeKeeper-iOS)
+
 ## Getting Started
 
-To install Valet in your iOS project, install with [CocoaPods](http://cocoapods.org)
+To integrate Badge Keeper library into your iOS project, install with [CocoaPods](http://cocoapods.org)
 ```
 platform :ios, '7.0'
 pod 'BadgeKeeper'
@@ -70,7 +72,7 @@ typedef void (^BKFailureResponseCallback)(int code, NSString *message);
 	}];
 ```
 
-### Post user variables to service to validate hit achievements
+### Post user variables and validate completed achievements
 
 ```objc
 [[BadgeKeeper instance] preparePostValue:0 forKey:@"key"];
@@ -83,7 +85,7 @@ typedef void (^BKFailureResponseCallback)(int code, NSString *message);
 	}];
 ```
 
-### Increment user variables on service to validate hit achievements
+### Increment user variables and validate completed achievements
 
 ```objc
 [[BadgeKeeper instance] prepareIncrementValue:1 forKey:@"key"];

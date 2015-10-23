@@ -1,4 +1,4 @@
 language: objective-c
-xcode_project: Samples/BadgeKeeper.Sample.xcworkspace
+xcode_workspace: Samples/BadgeKeeper.Sample.xcworkspace
 xcode_scheme: BadgeKeeper.Sample
 podfile: Samples/Podfile

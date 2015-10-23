@@ -1,4 +1,5 @@
 language: objective-c
+osx_image: xcode6.4
 xcode_workspace: Samples/BadgeKeeper.Sample.xcworkspace
 xcode_scheme: BadgeKeeper.Sample
 podfile: Samples/Podfile

@@ -1,5 +1,4 @@
 language: objective-c
 osx_image: xcode6.4
-xcode_workspace: Samples/BadgeKeeper.Sample.xcworkspace
-xcode_scheme: BadgeKeeper.Sample
+script: xctool -workspace "Samples/BadgeKeeper.Sample.xcworkspace" -scheme "BadgeKeeper.Sample" test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 podfile: Samples/Podfile

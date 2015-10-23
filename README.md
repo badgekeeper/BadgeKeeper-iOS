@@ -3,6 +3,9 @@
 Badge Keeper iOS library will help add achievement system to your app easily.
 
 [![Build Status](https://travis-ci.org/badgekeeper/BadgeKeeper-iOS.svg?branch=master)](https://travis-ci.org/badgekeeper/BadgeKeeper-iOS)
+[![Version](https://img.shields.io/cocoapods/v/BadgeKeeper.svg)](http://cocoadocs.org/docsets/BadgeKeeper)
+[![Platform](https://img.shields.io/cocoapods/p/BadgeKeeper.svg)](http://cocoadocs.org/docsets/BadgeKeeper)
+[![License](https://img.shields.io/cocoapods/l/BadgeKeeper.svg)](http://cocoadocs.org/docsets/BadgeKeeper)
 
 ## Getting Started
 

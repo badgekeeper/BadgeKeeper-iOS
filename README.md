@@ -1,145 +1,118 @@
-# BadgeKeeper
-BadgeKeeper service lightweight client library.
+# Badge Keeper
 
-## Adding BadgeKeeper to your project
+Badge Keeper iOS library will help add achievement system to your app easily.
 
-### Cocoapods
+## Getting Started
 
-[CocoaPods](http://cocoapods.org) is the recommended way to add BadgeKeeper to your project.
-
-1. Add a pod entry for BadgeKeeper to your Podfile `pod 'BadgeKeeper'`
-2. Install the pod(s) by running `pod install`.
-3. Include BadgeKeeper wherever you need it with `#import "BadgeKeeper.h"`.
-
-### How to use
-
-#### Setup project
+To install Valet in your iOS project, install with [CocoaPods](http://cocoapods.org)
 ```
-[BadgeKeeper instance].projectId = <ProjectId from admin panel>;
-```
-#### Setup user
-```
-[BadgeKeeper instance].userId = <Your client id>;
-```
-#### Setup loading icons flag
-```
-[BadgeKeeper instance].shouldLoadIcons = YES / NO;
+platform :ios, '7.0'
+pod 'BadgeKeeper'
 ```
 
-#### Subscribe to response for post and increment requests
-```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidSendValues:)
-                            name:kBKNotificationDidPostPreparedValues
-                            object:nil];
-```
-or
-```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidSendValues:)
-                            name:kBKNotificationDidIncrementPreparedValues
-                            object:nil];
-```
-After that you can catch notification results
-```
-- (void)clientDidSendValues:(NSNotification *)notification {
-    NSArray *achievements = notification.userInfo[kBKNotificationKeyResponseObject];
-}
-```
-where achievements is array of BKUnlockedUserAchievement objects.
+## Usage
 
-#### Subscribe to response for getting achievements by project
-```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidReceiveProjectAchievements:)
-                            name:kBKNotificationDidReceiveProjectAchievements
-                            object:nil];
-```
-and handler method
-```
-- (void)clientDidReceiveProjectAchievements:(NSNotification *)notification {
-    NSArray *achievements = notification.userInfo[kBKNotificationKeyResponseObject];
-}
-```
-where achievements is array of BKProjectAchievement objects.
+### Import header
 
-#### Subscribe to response for getting achievements by user
-```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidReceiveUserAchievements:)
-                            name:kBKNotificationDidReceiveUserAchievements
-                            object:nil];
-```
-and handler method
-```
-- (void)clientDidReceiveUserAchievements:(NSNotification *)notification {
-    NSArray *achievements = notification.userInfo[kBKNotificationKeyResponseObject];
-}
-```
-where achievements is array of BKUserAchievement objects.
-
-#### Post variable
-```
-[[BadgeKeeper instance] preparePostValue:100 forKey:@"Variable"];
-[[BadgeKeeper instance] postPreparedValues];
-```
-#### Increment variable
-```
-[[BadgeKeeper instance] prepareIncrementValue:20 forKey:@"Variable"];
-[[BadgeKeeper instance] incrementPreparedValues];
+```objc
+#import <BadgeKeeper/BadgeKeeper.h>
 ```
 
-### Error handling
-To handle error response from Badge Keeper service you should use notifications.
+### Basic Initialization
+
+```objc
+[BadgeKeeper instance].projectId       = @"Project Id from admin panel";
+[BadgeKeeper instance].userId          = @"Your client id";
+[BadgeKeeper instance].shouldLoadIcons = YES; // default is NO
 ```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidReceiveErrorProjectAchievements:)
-                            name:kBKNotificationFailedReceiveProjectAchievements
-                            object:nil];
-```
-to handle error response for getting achievements by project
+
+That's all settings that need to be configured.
+
+### Callbacks
+
+There are four callbacks that we will use to receive results from Badge Keeper service:
 
 ```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidReceiveErrorUserAchievements:)
-                            name:kBKNotificationFailedReceiveUserAchievements
-                            object:nil];
-```
-to handle error response for getting achievements by user
+// 1 - Returns array of BKAchievement elements
+typedef void (^BKAchievementsResponseCallback)(NSArray *achievements);
 
-```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidReceiveErrorPostPreparedValues:)
-                            name:kBKNotificationFailedPostPreparedValues
-                            object:nil];
-```
-to handle error response for posting variables
+// 2 - Returns array of BKUserAchievement elements
+typedef void (^BKUserAchievementsResponseCallback)(NSArray *achievements);
 
-```
-[[NSNotificationCenter defaultCenter]
-                            addObserver:self
-                            selector:@selector(clientDidReceiveErrorIncrementPreparedValues:)
-                            name:kBKNotificationFailedIncrementPreparedValues
-                            object:nil];
-```
-to handle error response for increment variables
+// 3 - Returns array of BKUnlockedAchievement elements
+typedef void (^BKAchievementsUnlockedCallback)(NSArray *achievements);
 
-Example how to work with error notification
+// 4 - Returns error code and error message if something goes wrong
+typedef void (^BKFailureResponseCallback)(int code, NSString *message);
 ```
-- (void)clientDidReceiveErrorUserAchievements:(NSNotification *)notification {
-    NSError *error = notification.userInfo[kBKNotificationKeyErrorObject];
-    NSString *text = [NSString stringWithFormat:@"Code: %ld, Message: %@",
-                      (unsigned long)error.code, error.localizedDescription];
-}
+
+### Get project achievements (no userId required)
+
+```objc
+[[BadgeKeeper instance]
+	getProjectAchievementsWithSuccess:^(NSArray *achievements) {
+		// Returns array of BKAchievement elements
+	}
+	withFailure:^(int code, NSString *message) {
+		// Returns error code and error message if something goes wrong
+	}];
 ```
+
+### Get user achievements
+
+```objc
+[[BadgeKeeper instance]
+	getUserAchievementsWithSuccess:^(NSArray *achievements) {
+		// Returns array of BKUserAchievement elements
+	}
+	withFailure:^(int code, NSString *message) {
+		// Returns error code and error message if something goes wrong
+	}];
+```
+
+### Post user variables to service to validate hit achievements
+
+```objc
+[[BadgeKeeper instance] preparePostValue:0 forKey:@"key"];
+[[BadgeKeeper instance]
+	postPreparedValuesWithSuccess:^(NSArray *achievements) {
+       // Returns array of BKUnlockedAchievement elements
+    }
+	withFailure:^(int code, NSString *message) {
+		// Returns error code and error message if something goes wrong
+	}];
+```
+
+### Increment user variables on service to validate hit achievements
+
+```objc
+[[BadgeKeeper instance] prepareIncrementValue:1 forKey:@"key"];
+[[BadgeKeeper instance]
+	incrementPreparedValuesWithSuccess:^(NSArray *achievements) {
+       // Returns array of BKUnlockedAchievement elements
+    }
+	withFailure:^(int code, NSString *message) {
+		// Returns error code and error message if something goes wrong
+	}];
+```
+
+## Requirements
+
+* Xcode 6.0 or later.
+* iOS 7 or later.
 
 ## License
 
-MIT. See `LICENSE` for details.
+	Copyright 2015 Badge Keeper
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+    	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.

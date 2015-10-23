@@ -1,4 +1,0 @@
-target 'BadgeKeeper.Sample' do
-pod 'Realm'
-end
-

@@ -2,6 +2,10 @@
 
 Badge Keeper iOS library will help add achievement system to your app easily.
 
+More information you can find here: [Badge Keeper official site](https://badgekeeper.net)
+
+Test your project from web browser here: [Badge Keeper Api](https://api.badgekeeper.net/swagger/ui/index)
+
 [![Build Status](https://travis-ci.org/badgekeeper/BadgeKeeper-iOS.svg?branch=master)](https://travis-ci.org/badgekeeper/BadgeKeeper-iOS)
 [![Version](https://img.shields.io/cocoapods/v/BadgeKeeper.svg)](http://cocoadocs.org/docsets/BadgeKeeper)
 [![Platform](https://img.shields.io/cocoapods/p/BadgeKeeper.svg)](http://cocoadocs.org/docsets/BadgeKeeper)
@@ -100,6 +104,16 @@ typedef void (^BKFailureResponseCallback)(int code, NSString *message);
 		// Returns error code and error message if something goes wrong
 	}];
 ```
+
+### Attention
+```objc
+// Requests will be processed in separated thread!
+// Use this when works with UI inside callback method.
+dispatch_sync(dispatch_get_main_queue(), ^{
+    // Put your UI logic here
+});
+```
+	
 
 ## Requirements
 
